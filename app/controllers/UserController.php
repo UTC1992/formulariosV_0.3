@@ -24,6 +24,9 @@
 		}
 		*/
 
-		
+		public function crearUsuario()
+		{
+			$rules = array('' => , );
+		}
 	}
  ?>

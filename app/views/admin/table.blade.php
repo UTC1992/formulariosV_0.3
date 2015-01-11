@@ -14,7 +14,7 @@
     <div class="box col-md-12">
     <div class="box-inner">
     <div class="box-header well" data-original-title="">
-        <h2><i class="glyphicon glyphicon-user"></i> Datatable + Responsive</h2>
+        <h2><i class="glyphicon glyphicon-user"></i>Partisipantes del Test</h2>
 
         <div class="box-icon">
             <a href="#" class="btn btn-setting btn-round btn-default"><i class="glyphicon glyphicon-cog"></i></a>
@@ -24,24 +24,39 @@
         </div>
     </div>
     <div class="box-content">
+
+
     <table class="table table-striped table-bordered bootstrap-datatable datatable responsive">
     <thead>
     <tr>
-        <th>Username</th>
-        <th>Date registered</th>
-        <th>Role</th>
-        <th>Status</th>
-        <th>Actions</th>
+        <th>ID</th>
+        <th>Cédula</th>
+        <th>Nombres</th>
+        <th>Apellidos</th>
+        <th>Nivel Académico</th>
+        <th>Profesión</th>
+        <th>Creación</th>
+        <th>Operaciones</th>
     </tr>
     </thead>
+
     <tbody>
     <tr>
-        <td>David R</td>
-        <td class="center">2012/01/01</td>
-        <td class="center">Member</td>
-        <td class="center">
+        <!-- $partisipantes es una variable enviada desde del controlador con with-->
+        @if($partisipantes)
+        <!--asignamos a un bucle de array $partisipantes a partisipant-->
+        @foreach($partisipantes as $partisipante)
+        <td class="center">{{$partisipante->id}}</td>
+        <td class="center">{{$partisipante->cedula}}</td>
+        <td class="center">{{$partisipante->nombres}}</td>
+        <td class="center">{{$partisipante->apellidos}}</td>
+        <td class="center">{{$partisipante->nivel_academico}}</td>
+        <td class="center">{{$partisipante->profesion}}</td>
+        <td class="center">{{$partisipante->created_at}}</td>
+        <!--<td class="center">
             <span class="label-success label label-default">Active</span>
         </td>
+        -->
         <td class="center">
             <a class="btn btn-success" href="#">
                 <i class="glyphicon glyphicon-zoom-in icon-white"></i>
@@ -57,50 +72,9 @@
             </a>
         </td>
     </tr>
-    <tr>
-        <td>Sheikh Heera</td>
-        <td class="center">2012/02/01</td>
-        <td class="center">Staff</td>
-        <td class="center">
-            <span class="label-default label label-danger">Banned</span>
-        </td>
-        <td class="center">
-            <a class="btn btn-success" href="#">
-                <i class="glyphicon glyphicon-zoom-in icon-white"></i>
-                View
-            </a>
-            <a class="btn btn-info" href="#">
-                <i class="glyphicon glyphicon-edit icon-white"></i>
-                Edit
-            </a>
-            <a class="btn btn-danger" href="#">
-                <i class="glyphicon glyphicon-trash icon-white"></i>
-                Delete
-            </a>
-        </td>
-    </tr>
-    <tr>
-        <td>Ahemd Saruar</td>
-        <td class="center">2012/03/01</td>
-        <td class="center">Member</td>
-        <td class="center">
-            <span class="label-warning label label-default">Pending</span>
-        </td>
-        <td class="center">
-            <a class="btn btn-success" href="#">
-                <i class="glyphicon glyphicon-zoom-in icon-white"></i>
-                View
-            </a>
-            <a class="btn btn-info" href="#">
-                <i class="glyphicon glyphicon-edit icon-white"></i>
-                Edit
-            </a>
-            <a class="btn btn-danger" href="#">
-                <i class="glyphicon glyphicon-trash icon-white"></i>
-                Delete
-            </a>
-        </td>
-    </tr>
+    @endforeach
+    @endif
+    
     </tbody>
     </table>
     </div>

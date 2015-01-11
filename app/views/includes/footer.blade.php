@@ -1,3 +1,4 @@
+@if(Auth::check())
 
 <?php if (!isset($no_visible_elements) || !$no_visible_elements) { ?>
     <!-- content ends -->
@@ -87,3 +88,4 @@
 </body>
 </html>
 
+@endif

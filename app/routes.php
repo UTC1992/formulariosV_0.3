@@ -102,7 +102,12 @@ Route::get('admin', array('before' => 'auth' , function()
 //rutas de paginas administración
 //Route::get('admin', function(){return View::make('admin.index');});
 Route::get('index_admin', function(){return View::make('admin.index');});
-Route::get('table_admin', function(){return View::make('admin.table');});
+//Route::get('table_admin', function(){return View::make('admin.table');});
 Route::get('error_admin', function(){return View::make('admin.error');});
 Route::get('login_admin', function(){return View::make('login');});
 Route::get('formulario', function(){return View::make('formularios.formulario');});
+
+//registrar partisipantes
+
+Route::post('registrarPartisipantes', 'PartisipanteController@postCreate');
+Route::controller('partisipantes', 'PartisipanteController');

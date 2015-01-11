@@ -1,3 +1,4 @@
+@if(Auth::check())
 
 @include('includes.header')
 <div>
@@ -10,8 +11,27 @@
         </li>
     </ul>
 </div>
+
 <div class="row">
     <div class="box col-md-12">
+
+<!--mensaje de confirmacion de creacion de usuario-->
+    <?php $status=Session::get('status'); ?>
+    @if($status=='ok_create')
+    <div class="alert alert-success fade in">
+        <button class="close" data-dismiss="alert" type="button">x</button>
+        <i class="fa fa-check-square"></i>El usuario a sido creado correctamente
+    </div>
+    @endif
+    @if($status=='false_create')
+    <div class="alert alert-danger fade in">
+        <button class="close" data-dismiss="alert" type="button">x</button>
+        <i class="fa fa-check-square"></i>Error el usuario no fue ingresado
+    </div>
+    @endif
+<!--end mensaje de registro-->
+
+
         <div class="box-inner">
             <div class="box-header well">
                 <h2><i class="glyphicon glyphicon-info-sign"></i> Introducción</h2>
@@ -38,21 +58,21 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Registrar Usuario</h4>
+        <h4 class="modal-title" id="myModalLabel">Registrar Partisipante</h4>
       </div>
       <div class="modal-body">
             
             <!--formulario inicio-->
         
             <div class="row">
-            <form class="form-horizontal">
-                
+            <form class="form-horizontal" action="registrarPartisipantes" method="post">
+
                 <div class="form-group">
                     <label class="col-sm-4 control-label" for="formGroup">
                         Cédula:
                     </label>
-                    <div class="col-sm-3">
-                        <input class="form-control" type="text" id="formGroup" placeholder="Cédula">
+                    <div class="col-sm-4">
+                        <input class="form-control" type="text" id="formGroup" name = "cedula" placeholder="Cédula" requered autofocus>
                     </div>
                 </div>
 
@@ -61,7 +81,7 @@
                         Nombres:
                     </label>
                     <div class="col-sm-6">
-                        <input class="form-control" type="text" id="formGroup" placeholder="Nombre">
+                        <input class="form-control" type="text" id="formGroup" name ="nombres" placeholder="Nombres">
                     </div>
                 </div>
 
@@ -70,7 +90,7 @@
                         Apellidos:
                     </label>
                     <div class="col-sm-6">
-                        <input class="form-control" type="text" id="formGroup" placeholder="Apellido">
+                        <input class="form-control" type="text" id="formGroup" name = "apellidos" placeholder="Apellidos">
                     </div>
                 </div>
 
@@ -79,7 +99,7 @@
                         Nivel Académico:
                     </label>
                     <div class="col-sm-3">
-                        <select class="form-control">
+                        <select class="form-control" name = "nivelAcademico">
                             <option>Ninguno</option>
                             <option>Primero</option>
                             <option>Segundo</option>
@@ -87,10 +107,19 @@
                         </select>
                     </div>
                 </div>
+
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="formGroup">
+                        Profesión:
+                    </label>
+                    <div class="col-sm-6">
+                        <input class="form-control" type="text" id="formGroup" name = "profesion" placeholder="Profesión">
+                    </div>
+                </div>
     <!--formulario fin-->
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary btn-ln" type="submit">
+        <button class="btn btn-primary btn-ln" type="submit">
                 <span class="glyphicon glyphicon-floppy-saved"></span>
                             Guardar
         </button>
@@ -111,4 +140,4 @@
 </div><!--/row-->
 @include('includes.footer')
 
-    
+@endif    

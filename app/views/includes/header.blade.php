@@ -1,3 +1,5 @@
+@if(Auth::check())
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -150,7 +152,7 @@
                         <li requered autofocus><a class="ajax-link" href="index_admin"><i class="glyphicon glyphicon-home"></i><span> Administración</span></a>
                         </li>
                         <li class="nav-header hidden-md">Datos</li>
-                        <li><a class="ajax-link" href="table_admin">
+                        <li><a class="ajax-link" href="<?=URL::to('partisipantes'); ?>">
                             <i class="glyphicon glyphicon-align-justify"></i><span>Tablas</span></a></li>
                         <li><a href="formulario"><i class="glyphicon glyphicon-edit"></i><span>Formulario</span></a>
                         <li class="nav-header hidden-md">Usuarios</li>
@@ -169,3 +171,4 @@
             <!-- content starts -->
             <?php } ?>
 
+@endif
