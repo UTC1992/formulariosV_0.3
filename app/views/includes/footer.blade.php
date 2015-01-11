@@ -1,3 +1,4 @@
+
 <?php if (!isset($no_visible_elements) || !$no_visible_elements) { ?>
     <!-- content ends -->
     </div><!--/#content.col-md-0-->
@@ -85,3 +86,4 @@
 
 </body>
 </html>
+

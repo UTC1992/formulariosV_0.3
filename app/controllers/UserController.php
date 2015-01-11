@@ -6,7 +6,7 @@
 		{
 			$this->beforeFilter('auth');
 		}
-
+		/*
 		public function getIndex()
 		{
 			$my_id = Auth::user()->id;
@@ -22,5 +22,8 @@
 				return View::make('error.access_denied_ad');
 			}
 		}
+		*/
+
+		
 	}
  ?>

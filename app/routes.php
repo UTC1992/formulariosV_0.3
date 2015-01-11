@@ -13,7 +13,7 @@
 
 Route::get('/', function()
 {
-	return View::make('admin.index');
+	return View::make('login');
 });
 
 Route::get('creartabla', function()
@@ -83,21 +83,24 @@ Route::post('login', 'UserLogin@user');
 //Route::get('/logout', 'UserLogin@logout');
 
 //Desconecta al usuario
-Route::get('/logout', ['uses' => 'UserLogin@logout', 'before' => 'auth']);
+Route::get('logout', ['uses' => 'UserLogin@logout', 'before' => 'auth']);
 
 
 //rutas del sistema
 Route::controller('package', 'PackageController');
 
 //ruta de administrador
-/*Route::get('admin', array('before' => 'auth' , function() 
+
+Route::get('admin', array('before' => 'auth' , function() 
 	{
 		return View::make('admin.index');
 
 	}));
-*/
+
+
 
 //rutas de paginas administración
+//Route::get('admin', function(){return View::make('admin.index');});
 Route::get('index_admin', function(){return View::make('admin.index');});
 Route::get('table_admin', function(){return View::make('admin.table');});
 Route::get('error_admin', function(){return View::make('admin.error');});

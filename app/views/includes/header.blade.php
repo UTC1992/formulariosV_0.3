@@ -73,7 +73,7 @@
             <!-- user dropdown starts -->
             <div class="btn-group pull-right">
                 <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                    <i class="glyphicon glyphicon-user"></i><span class="hidden-sm hidden-xs">Omar</span>
+                    <i class="glyphicon glyphicon-user"></i><span class="hidden-sm hidden-xs">{{Auth::user()->username}}</span>
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
@@ -168,3 +168,4 @@
         <div id="content" class="col-lg-10 col-sm-10">
             <!-- content starts -->
             <?php } ?>
+

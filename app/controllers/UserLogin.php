@@ -11,12 +11,14 @@
 			{
 				//nos logeamos como administrador
 				//return View::make('hello');
-				return Redirect::to("admin");
+				//return "entraste";
+				return Redirect::to('admin');
 			}
 			else
 			{
 				return Redirect::to('/')->with('login_errors', true);
 			}
+			return Redirect::to("admin");
 		}
 		public function logout()
 		{
@@ -24,7 +26,7 @@
        		 Auth::logout();
  
         	//Redireccionamos al inicio de la app con un mensaje
-        	return View::make('package.index');
+        	return View::make('/');
 		}
 	}
  ?>

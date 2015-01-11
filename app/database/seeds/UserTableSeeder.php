@@ -3,18 +3,19 @@
 		public function run()
 		{
 			DB::table('users')->delete();
-
+		
 			User::create(array(
-					'name'=>'Omar',
-					'last_name'=>'Guanoluisa',
+					'cedula'=>'0503254849',
+					'nombres'=>'Mauro Omar',
+					'apellidos'=>'Guanoluisa Arciniega',
 					'email'=>'omar.guanoluisa25@gmail.com',
-					'address'=>'Calle Amazonas',
-					'phone'=>979208483,
-					'username'=>'omar25',
-					'level'=>0,
+					'direccion'=>'Calle Amazonas',
+					'telefono'=>'0979208483',
+					'username'=>'omar1993',
 					'password'=>Hash::make('narutO25')
 				));
 
+			/*	
 			//llenamos los campos para otro usuario
 			User::create(array(
 					'name'=>'Estefania',
@@ -26,6 +27,7 @@
 					'level'=>1,
 					'password'=>Hash::make('estefy1993')
 				));
+				*/
 		}
 	}
  ?>
