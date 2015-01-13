@@ -4,3 +4,4 @@
 <script type="js/bootstrap.js"></script>
 <link rel="stylesheet" type="text/css" href="css/font-awesome.css">
 <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+<script type="js/scripts_mensajes.js"></script>

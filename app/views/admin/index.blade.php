@@ -23,7 +23,7 @@
         <i class="fa fa-check-square"></i>El usuario a sido creado correctamente
     </div>
     @endif
-    @if($status=='false_create')
+    @if($status=='no_create')
     <div class="alert alert-danger fade in">
         <button class="close" data-dismiss="alert" type="button">x</button>
         <i class="fa fa-check-square"></i>Error el usuario no fue ingresado

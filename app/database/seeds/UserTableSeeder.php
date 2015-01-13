@@ -2,8 +2,32 @@
 	Class UserTableSeeder extends Seeder{
 		public function run()
 		{
-			DB::table('users')->delete();
-		
+			DB::table('partisipantes')->delete();
+
+			Partisipante::create(array(
+					'cedula'=>'0503254849',
+					'nombres'=>'Mauro Omar',
+					'apellidos'=>'Guanoluisa Arciniega',
+					'nivel_academico'=>'Tercero',
+					'profesion'=>'Ing. Sistemas'
+				));
+			Partisipante::create(array(
+					'cedula'=>'0503111111',
+					'nombres'=>'Juan Pablo',
+					'apellidos'=>'Perez',
+					'nivel_academico'=>'Segundo',
+					'profesion'=>'Ing. Contabilidad'
+				));
+			Partisipante::create(array(
+					'cedula'=>'0502222222',
+					'nombres'=>'Diego',
+					'apellidos'=>'Mosquera',
+					'nivel_academico'=>'Primero',
+					'profesion'=>'Ing. Comercial'
+				));
+			
+
+			/*	
 			User::create(array(
 					'cedula'=>'0503254849',
 					'nombres'=>'Mauro Omar',
@@ -14,6 +38,7 @@
 					'username'=>'omar1993',
 					'password'=>Hash::make('narutO25')
 				));
+			*/
 
 			/*	
 			//llenamos los campos para otro usuario

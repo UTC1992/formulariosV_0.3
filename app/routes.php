@@ -11,95 +11,19 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('login');
-});
+//ruta raiz inicial al ingresar a la aplicacion
+Route::get('/', function(){return View::make('login');});
 
-Route::get('creartabla', function()
-{
-	Schema::create('products', function($tabla)
-	{
-			$tabla->increments('id');
-			$tabla->string('name');
-			$tabla->string('description');
-			$tabla->integer('cantidad');
-			$tabla->float('precio');
-			$tabla->timestamps();
-	});
-	return "tabla productos creada";
-});
-Route::get('registrar', function()
-{
-	$producto = new Product;
-	$producto->name = "iPad";
-	$producto->description = "Smart table 2014";
-	$producto->cantidad = 60;
-	$producto->precio = 750;
-
-	//guardamos
-	$producto->save();
-	return "el producto fue agregado correctamente";
-});
-
-Route::get('buscar', function()
-{
-	//buscar por id
-	//$producto = Product::find(1);
-
-	//buscar caracteres
-	$producto = Product::where('name', '=','iPad')->get();
-	return 'La cantidad de productos es: '.$producto[0]['cantidad'];
-});
-
-Route::get('actualizar', function()
-{
-	$producto = Product::find(2);
-	$producto->cantidad = 120;
-	$producto->precio = 620;
-	$producto->save();
-
-	return "registro actualizado correctamente";
-});
-
-Route::get('eliminar', function()
-{
-	$producto = Product::find(1);
-	$producto->delete();
-
-	return "registro eliminado correctamente";
-});
-
-//autenticacion basica
-Route::get('login2', array('before' => 'auth.basic' , function() 
-	{
-		return View::make('hello');
-	}));
-
-//login
+//login autenticar datos
 Route::post('login', 'UserLogin@user');
-
-//deslogin logout
-//Route::get('/logout', 'UserLogin@logout');
 
 //Desconecta al usuario
 Route::get('logout', ['uses' => 'UserLogin@logout', 'before' => 'auth']);
 
+//ruta de interfaz del administrador
+Route::get('admin', array('before' => 'auth' , function() {return View::make('admin.index');}));
 
-//rutas del sistema
-Route::controller('package', 'PackageController');
-
-//ruta de administrador
-
-Route::get('admin', array('before' => 'auth' , function() 
-	{
-		return View::make('admin.index');
-
-	}));
-
-
-
-//rutas de paginas administración
+//===========================RUTAS PARA NAVEGAR ENTRE LAS PAGINAS=============
 //Route::get('admin', function(){return View::make('admin.index');});
 Route::get('index_admin', function(){return View::make('admin.index');});
 //Route::get('table_admin', function(){return View::make('admin.table');});
@@ -107,7 +31,15 @@ Route::get('error_admin', function(){return View::make('admin.error');});
 Route::get('login_admin', function(){return View::make('login');});
 Route::get('formulario', function(){return View::make('formularios.formulario');});
 
-//registrar partisipantes
 
+//=======================CRUD DE LOS PARTICIPANTES==============
+//registrar partisipantes
 Route::post('registrarPartisipantes', 'PartisipanteController@postCreate');
+//mostrar partisipantes
 Route::controller('partisipantes', 'PartisipanteController');
+//eliminar partisipantes
+Route::get('eliminarPartisipante/{id}','PartisipanteController@getDelete');
+//obtener datos de la base de datos
+Route::controller('partisipante/getpartisipante','getpartisipanteController');
+//actualizar los datos obtenidos
+Route::post('actualizarPartisipante','PartisipanteController@postUpdate');

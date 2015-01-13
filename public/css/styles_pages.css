@@ -21,3 +21,12 @@ body{
 			display: block;
 			border-radius: 50%;
 		}
+
+		.cargandoEditar{
+			width: 30px;
+			height: 30px;
+		}
+
+		.loadingDatos{
+			float: left;	
+		}
