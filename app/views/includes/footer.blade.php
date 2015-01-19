@@ -22,7 +22,7 @@
     <!-- Ad ends -->
 
     <hr>
-
+<!--
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
          aria-hidden="true">
 
@@ -42,7 +42,7 @@
             </div>
         </div>
     </div>
-
+    -->
     <footer class="row">
     </footer>
 <?php } ?>

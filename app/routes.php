@@ -18,7 +18,7 @@ Route::get('/', function(){return View::make('login');});
 Route::post('login', 'UserLogin@user');
 
 //Desconecta al usuario
-Route::get('logout', ['uses' => 'UserLogin@logout', 'before' => 'auth']);
+Route::get('logout', ['uses' => 'UserLogin@getLogout', 'before' => 'auth']);
 
 //ruta de interfaz del administrador
 Route::get('admin', array('before' => 'auth' , function() {return View::make('admin.index');}));
@@ -26,13 +26,15 @@ Route::get('admin', array('before' => 'auth' , function() {return View::make('ad
 //===========================RUTAS PARA NAVEGAR ENTRE LAS PAGINAS=============
 //Route::get('admin', function(){return View::make('admin.index');});
 Route::get('index_admin', function(){return View::make('admin.index');});
-//Route::get('table_admin', function(){return View::make('admin.table');});
+Route::get('tareas_admin', function(){return View::make('admin.table');});
 Route::get('error_admin', function(){return View::make('admin.error');});
 Route::get('login_admin', function(){return View::make('login');});
 Route::get('formulario', function(){return View::make('formularios.formulario');});
-
+Route::get('registroUsuarios', function(){return View::make('usuarios.registro');});
+Route::get('registroTareas', function(){return View::make('tarea.registro');});
 
 //=======================CRUD DE LOS PARTICIPANTES==============
+
 //registrar partisipantes
 Route::post('registrarPartisipantes', 'PartisipanteController@postCreate');
 //mostrar partisipantes
@@ -43,3 +45,19 @@ Route::get('eliminarPartisipante/{id}','PartisipanteController@getDelete');
 Route::controller('partisipante/getpartisipante','getpartisipanteController');
 //actualizar los datos obtenidos
 Route::post('actualizarPartisipante','PartisipanteController@postUpdate');
+
+//=======================CRUD DE LAS TAREAS==============
+Route::controller('tareas','TareaController');
+
+Route::post('crearTareas','TareaController@postCreate');
+
+Route::controller('tarea/gettarea','gettareaController');
+
+Route::post('actualizarPartisipante','PartisipanteController@postUpdate');
+
+//=======================CRUD DE LAS TAREAS==============
+//mostrar partisipantes
+Route::controller('aplicaciones', 'AplicacionController');
+
+//registrar partisipantes
+Route::post('registrarAplicacion', 'AplicacionController@postCreate');

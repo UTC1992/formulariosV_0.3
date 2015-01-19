@@ -1,6 +1,6 @@
 <?php 
 	
-	class PartisipanteController extends BaseController
+	class AplicacionController extends BaseController
 	{
 		public function __construc()
 		{
@@ -14,8 +14,8 @@
 		public function getIndex()
 		{
 			//$my_id = Auth::user()->id;
-			$partisipantes = DB::table('partisipantes')->get();
-			return View::make('usuarios.partisipantes')->with('partisipantes', $partisipantes);
+			$aplicaciones = DB::table('aplicaciones')->get();
+			return View::make('aplicacion.aplicaciones')->with('aplicaciones', $aplicaciones);
 		}
 
 		//metodo para registrar un usuario
@@ -23,11 +23,8 @@
 		{
 			//validamos reglas inputs
 			$rules = array(
-				'cedula' => 'required|max:50',
-				'nombres' => 'required|max:50',
-				'apellidos' => 'required|max:60',
-				'nivelAcademico' => 'required|max:50', 
-				'profesion' => 'required|max:50'
+				'nombre' => 'required|max:50',
+				'tipo' => 'required|max:50'
 				);
 
 			$validation = Validator::make(Input::all(),$rules);
@@ -37,22 +34,19 @@
 				//return Redirect::to('admin')->withInput()->withErrors($validation);
 				//se redirecciona a la pagina de administracion con una variable 
 				//variable => status con el valor==>false_create
-				return Redirect::to('partisipantes')->with('status', 'no_create');
+				return Redirect::to('aplicaciones')->with('status', 'no_create');
 			}
 
 			//si todo esta bien guardamos los datos
-			$partisipante = new Partisipante;
-			$partisipante->cedula = Input::get('cedula');
-			$partisipante->nombres = Input::get('nombres');
-			$partisipante->apellidos = Input::get('apellidos');
-			$partisipante->nivel_academico = Input::get('nivelAcademico');
-			$partisipante->profesion = Input::get('profesion');
+			$aplicacion = new Aplicacion;
+			$aplicacion->nombre = Input::get('nombre');
+			$aplicacion->tipo = Input::get('tipo');
 			
 			//guardamos
-			$partisipante->save();
+			$aplicacion->save();
 
 			//redirigimos a partisipantes
-			return Redirect::to('partisipantes')->with('status', 'ok_create');
+			return Redirect::to('aplicaciones')->with('status', 'ok_create');
 
 		}
 

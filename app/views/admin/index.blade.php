@@ -4,10 +4,10 @@
 <div>
     <ul class="breadcrumb">
         <li>
-            <a href="admin">Inicio</a>
+            <a class="btn btn-primary btn-ln" href="admin">Inicio</a>
         </li>
         <li>
-            <a href="admin">Administración</a>
+            <a class="btn btn-primary btn-ln" href="admin">Administración</a>
         </li>
     </ul>
 </div>
@@ -51,90 +51,6 @@
         </div>
     </div>
 </div>
-
-<!-- Inicio Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Registrar Partisipante</h4>
-      </div>
-      <div class="modal-body">
-            
-            <!--formulario inicio-->
-        
-            <div class="row">
-            <form class="form-horizontal" action="registrarPartisipantes" method="post">
-
-                <div class="form-group">
-                    <label class="col-sm-4 control-label" for="formGroup">
-                        Cédula:
-                    </label>
-                    <div class="col-sm-4">
-                        <input class="form-control" type="text" id="formGroup" name = "cedula" placeholder="Cédula" requered autofocus>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-sm-4 control-label" for="formGroup">
-                        Nombres:
-                    </label>
-                    <div class="col-sm-6">
-                        <input class="form-control" type="text" id="formGroup" name ="nombres" placeholder="Nombres">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-sm-4 control-label" for="formGroup">
-                        Apellidos:
-                    </label>
-                    <div class="col-sm-6">
-                        <input class="form-control" type="text" id="formGroup" name = "apellidos" placeholder="Apellidos">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-sm-4 control-label" for="formGroup">
-                        Nivel Académico:
-                    </label>
-                    <div class="col-sm-3">
-                        <select class="form-control" name = "nivelAcademico">
-                            <option>Ninguno</option>
-                            <option>Primero</option>
-                            <option>Segundo</option>
-                            <option>Tercer</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-sm-4 control-label" for="formGroup">
-                        Profesión:
-                    </label>
-                    <div class="col-sm-6">
-                        <input class="form-control" type="text" id="formGroup" name = "profesion" placeholder="Profesión">
-                    </div>
-                </div>
-    <!--formulario fin-->
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-primary btn-ln" type="submit">
-                <span class="glyphicon glyphicon-floppy-saved"></span>
-                            Guardar
-        </button>
-        <a href="#"><button type="button" class="btn btn-default btn-ln" data-dismiss="modal">
-                <span class="glyphicon glyphicon-remove-circle"></span>
-                            Cancelar
-        </button>
-        </a>
-
-      </div>
-    </div>
-  </div>
-</div>
-<!-- End Modal -->
-
 
     <!--/span-->
 </div><!--/row-->

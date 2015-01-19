@@ -20,13 +20,13 @@
 			}
 			return Redirect::to("admin");
 		}
-		public function logout()
+		public function getLogout()
 		{
 			  //Desconctamos al usuario
-       		 Auth::logout();
+       		 //Auth::logout();
  
         	//Redireccionamos al inicio de la app con un mensaje
-        	return View::make('/');
+        	return View::make('login	');
 		}
 	}
  ?>
