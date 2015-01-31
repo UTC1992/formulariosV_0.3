@@ -23,17 +23,20 @@
 			<p>Introdusca usuario y contraseña para continuar.</p>
 			@endif
 			<div class="form-group">
-				<input type="text" class="form-control" placeholder="Usuario" name="username" id="username"  requered autofocus>
+				<input type="text" class="form-control" placeholder="Username" name="username" id="username"  requered autofocus>
 			</div>
 			<div class="form-group">
 				<input type="password" class="form-control" placeholder="Contraseña" name="password" id="password" requered>
 			</div>
 			<button class="btn btn-lg btn-primary btn-block" type="submit">Iniciar Sesión</button>
 			<div class="checkbox">
+				<!--
 				<label class="checkbox">
 					<input type="checkbox" value="1" name="remember">No cerrar sesión
 				</label>
-				<p><a href="#">¿No puedes acceder a la cuenta?</a></p>
+				-->
+				<br>
+				<p><a href="<?=URL::to('registroAdmin') ?>" style="font-size: 13pt;">Registrarce</a></p>
 			</div>			
 		</form>
 		<?php echo HTML::script('js/jquery-1.11.1.min.js'); ?>

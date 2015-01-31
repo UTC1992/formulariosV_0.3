@@ -15,7 +15,7 @@
 Route::get('/', function(){return View::make('login');});
 
 //login autenticar datos
-Route::post('login', 'UserLogin@user');
+Route::post('login','UserLogin@user');
 
 //Desconecta al usuario
 Route::get('logout', ['uses' => 'UserLogin@getLogout', 'before' => 'auth']);
@@ -32,6 +32,15 @@ Route::get('login_admin', function(){return View::make('login');});
 Route::get('formulario', function(){return View::make('formularios.formulario');});
 Route::get('registroUsuarios', function(){return View::make('usuarios.registro');});
 Route::get('registroTareas', function(){return View::make('tarea.registro');});
+
+//Administrador
+//interfaz registro
+Route::get('registroAdmin',function(){return View::make('admin.registro');});
+//registrar adminisstrador
+Route::post('registrarAdmin','UserController@postCreate');
+//obtener datos del administrador y mostrarlos en el PERFIL
+Route::get('perfil','UserController@getIndex');
+
 
 //=======================CRUD DE LOS PARTICIPANTES==============
 

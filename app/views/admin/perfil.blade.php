@@ -1,10 +1,5 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Document</title>
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+@include('includes.header')
+	
 	@include('includes.styles')	
 	<style type="text/css">
 		#tel{
@@ -13,25 +8,26 @@
 	</style>
 </head>
 <body>
-	<div class="container well" id="registro_sha">
+	<div >
 		<div class="row">
 			<div class="col-xs-12">
 				<center>
-				<h3>Nueva Cuenta</h3>
+				<h3>Datos del Administrador</h3>
 				</center>
 			</div>
 			<br><br><br><br>
 			
 			<?php //echo $errors->first('email'); ?>
-
+			
+			@if($user)
 			<form  class="form-horizontal" action="registrarAdmin" method="post">
 
 				<div class="form-group">
 					<label class="col-sm-3 control-label" for="formGroup">
 						Cédula:
 					</label>
-					<div class="col-sm-4">
-						<input class="form-control" type="text" name="cedula" id="formGroup" placeholder="Tu Cédula">
+					<div class="col-sm-2">
+						<input class="form-control" type="text" name="cedula" id="formGroup" value="{{$user->cedula}}" placeholder="Tu Cédula" disabled>
 					</div>
 				</div>
 
@@ -39,8 +35,8 @@
 					<label class="col-sm-3 control-label" for="formGroup">
 						Nombres:
 					</label>
-					<div class="col-sm-6">
-						<input class="form-control" type="text" name="nombres" id="formGroup" placeholder="Tus Nombres">
+					<div class="col-sm-4">
+						<input class="form-control" type="text" name="nombres" id="formGroup" value="{{$user->nombres}}" placeholder="Tus Nombres" disabled>
 					</div>
 				</div>
 
@@ -48,8 +44,8 @@
 					<label class="col-sm-3 control-label" for="formGroup">
 						Apellidos:
 					</label>
-					<div class="col-sm-6">
-						<input class="form-control" type="text" name="apellidos" id="formGroup" placeholder="Tus Apellidos">
+					<div class="col-sm-4">
+						<input class="form-control" type="text" name="apellidos" id="formGroup" value="{{$user->apellidos}}" placeholder="Tus Apellidos" disabled>
 					</div>
 				</div>
 				
@@ -57,9 +53,9 @@
 					<label class="col-sm-3 control-label" for="formGroup" id="tel">
 						Teléfono:
 					</label>
-					<div class="input-group col-sm-3">
+					<div class="input-group col-sm-2">
 						<span class="input-group-addon"><span class="glyphicon glyphicon-phone"></span></span>
-						<input class="form-control" type="text" name="telefono" id="formGroup" placeholder="Tu Teléfono">
+						<input class="form-control" type="text" name="telefono" id="formGroup" value="{{$user->telefono}}" placeholder="Tu Teléfono" disabled>
 					</div>
 				</div>
 
@@ -67,9 +63,9 @@
 					<label class="col-sm-3 control-label" for="formGroup" id="tel">
 						Email:
 					</label>
-					<div class="input-group col-sm-5">
+					<div class="input-group col-sm-3">
 						<span class="input-group-addon">@</span>
-						<input class="form-control" type="email" name="email" id="formGroup" placeholder="Tu Email">
+						<input class="form-control" type="email" name="email" id="formGroup" value="{{$user->email}}" placeholder="Tu Email" disabled>
 					</div>
 				</div>
 				<!--
@@ -87,8 +83,8 @@
 					<label class="col-sm-3 control-label" for="formGroup">
 						Dirección:
 					</label>
-					<div class="col-sm-6">
-						<textarea class="form-control" name="direccion" rowa="4" placeholder="Tu Dirección"></textarea>
+					<div class="col-sm-4">
+						<input class="form-control"  name="direccion" value="{{$user->direccion}}" placeholder="Tu Dirección" disabled>
 					</div>
 				</div>
 				
@@ -96,18 +92,9 @@
 					<label class="col-sm-3 control-label" for="formGroup">
 						Alias:
 					</label>
-					<div class="col-sm-4">
-						<input class="form-control" type="text" name="username" id="formGroup" placeholder="Tu username">
+					<div class="col-sm-2">
+						<input class="form-control" type="text" name="username" id="formGroup" value="{{$user->username}}" placeholder="Tu username" disabled>
 						<span class="help-block">Este nombre será utilizado para ingresar a tu cuenta.</span>
-					</div>
-				</div>
-				
-				<div class="form-group">
-					<label class="col-sm-3 control-label" for="formGroup">
-						Password:
-					</label>
-					<div class="col-sm-4">
-						<input class="form-control" type="password" name="password" id="formGroup" placeholder="Una Contraseña">
 					</div>
 				</div>
 
@@ -115,11 +102,11 @@
 					<label class="col-sm-3 control-label" for="formGroup">
 					</label>
 					<div class="col-sm-6">
-						<button class="btn btn-success btn-lg" type="submit">
+						<a href="#" class="btn btn-success btn-lg" type="button">
 							<span class="glyphicon glyphicon-floppy-saved"></span>
-							Guardar
-						</button>
-						<a  href="/" class="btn btn-danger btn-lg" type="button">
+							Editar
+						</a>
+						<a  href="index_admin" class="btn btn-danger btn-lg" type="button">
 							<span class="glyphicon glyphicon-remove-circle"></span>
 							Cancelar
 						</a>
@@ -128,9 +115,5 @@
 			</form>
 		</div>
 	</div>
-	
-
-	<script type="js/jquery-1.11.1.min.js"></script>
-	<script type="js/bootstrap.js"></script>
-</body>
-</html>
+	@endif
+@include('includes.footer')

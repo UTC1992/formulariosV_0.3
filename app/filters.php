@@ -47,8 +47,9 @@ Route::filter('auth', function()
 			return Redirect::guest('login');
 		}
 	}*/
-
-	if(Auth::guest()) return Redirect::guest('/');
+	//tartar de comentar estas dos lineas
+	if(Auth::guest()) 
+		return Redirect::guest('/');
 });
 
 

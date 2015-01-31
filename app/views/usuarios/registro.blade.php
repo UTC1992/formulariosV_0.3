@@ -5,7 +5,7 @@
         <center>
 
         <h1>Registro de Usuarios</h1>
-        <div class="container well">
+        <div class="well">
             <div class="row">
             <form class="form-horizontal" action="registrarPartisipantes" method="post">
 
