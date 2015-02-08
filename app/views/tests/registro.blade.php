@@ -38,6 +38,19 @@
                         </select>
                     </div>
                 </div>
+                    
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="formGroup">
+                        Estado:
+                    </label>
+                    <div class="col-sm-6">
+                        <select class="form-control" name = "estado">
+                            <option>Abierto</option>
+                            <option>Cerrado</option>
+                        </select>
+                    </div>
+                </div>
+
                 <input id="userAdmin" type="hidden" name="userAdmin" class="input-block-level" value="{{Auth::user()->id}}" >
             </div>
     <!--formulario fin-->
