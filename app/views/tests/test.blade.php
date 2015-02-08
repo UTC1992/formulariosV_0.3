@@ -1,17 +1,16 @@
 @if(Auth::check())
 @include('includes.header')
-
-    <div>
+<div>
         <ul class="breadcrumb">
             <li>
                 <a class="btn btn-primary btn-ln" href="index_admin">Inicio</a>
             </li>
             <li>
-                <a class="btn btn-primary btn-ln" href="table_admin">Participantes</a>
+                <a class="btn btn-primary btn-ln" href="tests">Tests</a>
             </li>
-            <li><a class="btn btn-primary btn-ln" href="registroUsuarios">
-                            <i class="glyphicon glyphicon-plus"></i><span>Registrar</span></a>
-                </li>
+            <li>
+                <a class="btn btn-primary btn-ln" href="registroTest">Crear Test</a>
+            </li>
         </ul>
     </div>
 
@@ -52,17 +51,14 @@
     <div class="box-content">
     
     <!-- $partisipantes es una variable enviada desde del controlador con with-->
-    @if($partisipantes)
+    @if($tests)
     <table class="table table-striped table-bordered bootstrap-datatable datatable responsive">
     <thead>
     <tr>
         <th>ID</th>
-        <th>Cédula</th>
-        <th>Nombres</th>
-        <th>Apellidos</th>
-        <th>Nivel Académico</th>
-        <th>Profesión</th>
-        <th>Creación</th>
+        <th>Creador</th>
+        <th>Estado</th>
+        <th>Fecha de Creación</th>
         <th>Operaciones</th>
     </tr>
     </thead>
@@ -71,14 +67,11 @@
     <tr>
         
         <!--asignamos a un bucle de array $partisipantes a partisipant-->
-        @foreach($partisipantes as $partisipante)
-        <td class="center">{{$partisipante->id}}</td>
-        <td class="center">{{$partisipante->cedula}}</td>
-        <td class="center">{{$partisipante->nombres}}</td>
-        <td class="center">{{$partisipante->apellidos}}</td>
-        <td class="center">{{$partisipante->nivel_academico}}</td>
-        <td class="center">{{$partisipante->profesion}}</td>
-        <td class="center">{{$partisipante->created_at}}</td>
+        @foreach($tests as $test)
+        <td class="center">{{$test->id}}</td>
+        <td class="center">{{Auth::user()->nombres}} {{Auth::user()->apellidos}}</td>
+        <td class="center">{{$test->estado}}</td>
+        <td class="center">{{$test->created_at}}</td>
         <!--<td class="center">
             <span class="label-success label label-default">Active</span>
         </td>
@@ -97,9 +90,9 @@
             -->
             <button class="btn btn-info" href="#" >
                 <i class="glyphicon glyphicon-edit icon-white"></i>
-                {{HTML::link('#Edit','Editar',array('class'=>'edit','id'=>$partisipante->id,'data-toggle'=>'modal','title'=>$partisipante->nombres))}}
+                {{HTML::link('#Edit','Editar',array('class'=>'edit','id'=>$test->id,'data-toggle'=>'modal','title'=>'Test'))}}
             </button>
-            <a class="btn btn-danger" href="<?=URL::to('eliminarPartisipante'); ?>/{{$partisipante->id}}">
+            <a class="btn btn-danger" href="<?=URL::to('eliminarTest'); ?>/{{$test->id}}">
                 <i class="glyphicon glyphicon-trash icon-white"></i>
                 Eliminar
             </a>

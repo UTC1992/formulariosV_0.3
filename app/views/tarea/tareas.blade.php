@@ -58,7 +58,8 @@
     </div>
     <div class="box-content">
 
-
+    <!-- $partisipantes es una variable enviada desde del controlador con with-->
+    @if($tareas)
     <table class="table table-striped table-bordered bootstrap-datatable datatable responsive">
     <thead>
     <tr>
@@ -71,8 +72,7 @@
 
     <tbody>
     <tr>
-        <!-- $partisipantes es una variable enviada desde del controlador con with-->
-        @if($tareas)
+        
         <!--asignamos a un bucle de array $partisipantes a partisipant-->
         @foreach($tareas as $tarea)
         <td class="center">{{$tarea->id}}</td>
@@ -94,13 +94,14 @@
                 Editar
             </a>
             -->
-            <button class="btn btn-info" href="#" >
+            <button class="btn btn-info" >
                 <i class="glyphicon glyphicon-edit icon-white"></i>
                 {{HTML::link('#Edit','Editar',array('class'=>'edit','id'=>$tarea->id,'data-toggle'=>'modal'))}}
             </button>
-            <a class="btn btn-success" href="#">
-                <i class="glyphicon glyphicon-zoom-in icon-white"></i>
-                Detalles
+
+            <a class="btn btn-danger" href="<?=URL::to('eliminarTarea'); ?>/{{$tarea->id}}">
+                <i class="glyphicon glyphicon-trash icon-white"></i>
+                Eliminar
             </a>
         </td>
     </tr>
@@ -110,19 +111,6 @@
         <button class="close" data-dismiss="alert" type="button">x</button>
         <i class="fa fa-check-square"></i>No existen registros por el momento
     </div>
-    <tr>
-        <!-- $partisipantes es una variable enviada desde del controlador con with-->
-        <td class="center">No Registros</td>
-        <td class="center">No Registros</td>
-        <td class="center">No Registros</td>
-        <!--<td class="center">
-            <span class="label-success label label-default">Active</span>
-        </td>
-        -->
-        <td class="center">
-            No hay Acciones
-        </td>
-    </tr>
     @endif
     
     </tbody>
@@ -139,7 +127,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel"><i class="glyphicon glyphicon-pencil"></i>Nueva Tarea
+        <h4 class="modal-title" id="myModalLabel"><i class="glyphicon glyphicon-pencil"></i>Editar Tarea
         </h4>
       </div>
       <div class="modal-body">
@@ -147,14 +135,15 @@
             <!--formulario inicio-->
         
             <div class="row">
-            <form role="form" class="form-horizontal" id="formEdit" action="editarTarea" method="post">
+            <form role="form" class="form-horizontal" id="formEdit" action="actualizarTarea" method="post">
 
                 <div class="form-group">
                     <label class="col-sm-3 control-label" for="formGroup">
                         Enunciado:
                     </label>
                     <div class="col-sm-6">
-                        <textarea class="form-control" type="text" id="formGroup" name ="enunciado_edit" placeholder="Enunciado"></textarea>
+                        <textarea class="form-control" type="text" id="formGroup" name="enunciado_edit" placeholder="Enunciado">
+                        </textarea>
                     </div>
                 </div>
                 
@@ -192,14 +181,14 @@ $(document).ready(function()
   
     $('[name=tarea]').val($(this).attr ('id'));
     
-    var faction = "<?php echo URL::to('tarea/gettarea'); ?>";
+    var faction = "<?php echo URL::to('tarea/gettarea/data'); ?>";
     
     var fdata = $('#val').serialize();
      $('#load').show();
     $.post(faction, fdata, function(json) {
         if (json.success) {
             $('#formEdit input[name="tarea_id"]').val(json.id);
-            $('#formEdit input[name="enunciado_edit"]').val(json.enunciado);
+            $('#formEdit textarea[name="enunciado_edit"]').val(json.enunciado);
 
             $('#load').hide();
             

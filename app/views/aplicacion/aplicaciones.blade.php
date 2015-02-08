@@ -8,8 +8,8 @@
             <li>
                 <a class="btn btn-primary btn-ln" href="aplicaciones">Aplicaciones</a>
             </li>
-            <li><a class="btn btn-primary btn-ln" href="#" data-toggle="modal" data-target="#ingreso">
-                    <i class="glyphicon glyphicon-plus"></i><span>Registrar</span></a>
+            <li>
+                <a class="btn btn-primary btn-ln" href="registroApp">Registrar Aplicación</a>
             </li>
         </ul>
     </div>
@@ -44,7 +44,8 @@
     </div>
     <div class="box-content">
 
-
+    <!-- $partisipantes es una variable enviada desde del controlador con with-->
+    @if($aplicaciones)
     <table class="table table-striped table-bordered bootstrap-datatable datatable responsive">
     <thead>
     <tr>
@@ -57,8 +58,7 @@
 
     <tbody>
     <tr>
-        <!-- $partisipantes es una variable enviada desde del controlador con with-->
-        @if($aplicaciones)
+        
         <!--asignamos a un bucle de array $partisipantes a partisipant-->
         @foreach($aplicaciones as $aplicacion)
         <td class="center">{{$aplicacion->id}}</td>
@@ -84,6 +84,10 @@
                 <i class="glyphicon glyphicon-edit icon-white"></i>
                 {{HTML::link('#Edit','Editar',array('class'=>'edit','id'=>$aplicacion->id,'data-toggle'=>'modal','title'=>$aplicacion->nombre))}}
             </button>
+            <a class="btn btn-danger" href="<?=URL::to('eliminarApp'); ?>/{{$aplicacion->id}}">
+                <i class="glyphicon glyphicon-trash icon-white"></i>
+                Eliminar
+            </a>
 
         </td>
     </tr>
@@ -93,19 +97,6 @@
         <button class="close" data-dismiss="alert" type="button">x</button>
         <i class="fa fa-check-square"></i>No existen registros por el momento
     </div>
-    <tr>
-        <!-- $partisipantes es una variable enviada desde del controlador con with-->
-        <td class="center">No Registros</td>
-        <td class="center">No Registros</td>
-        <td class="center">No Registros</td>
-        <!--<td class="center">
-            <span class="label-success label label-default">Active</span>
-        </td>
-        -->
-        <td class="center">
-            No hay Acciones
-        </td>
-    </tr>
     @endif
     
     </tbody>
@@ -115,64 +106,6 @@
     </div>
     <!--/span-->
 
-<div class="content">
-
-<!-- Inicio Modal -->
-<div class="modal fade" id="ingreso" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Registrar Partisipante</h4>
-      </div>
-      <div class="modal-body">
-            
-            <!--formulario inicio-->
-        
-            <div class="row">
-            <form class="form-horizontal" action="registrarAplicacion" method="post">
-
-                <div class="form-group">
-                    <label class="col-sm-4 control-label" for="formGroup">
-                        Nombre:
-                    </label>
-                    <div class="col-sm-4">
-                        <input class="form-control" type="text" id="formGroup" name = "nombre" placeholder="Cédula" requered autofocus>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-sm-4 control-label" for="formGroup">
-                        Tipo:
-                    </label>
-                    <div class="col-sm-3">
-                        <select class="form-control" name = "tipo">
-                            <option>Ninguno</option>
-                            <option>Escritorio</option>
-                            <option>Web</option>
-                            <option>Movil</option>
-                        </select>
-                    </div>
-                </div>
- <!--formulario fin-->
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-primary btn-ln" type="submit">
-                <span class="glyphicon glyphicon-floppy-saved"></span>
-                            Guardar
-        </button>
-        <a href="#"><button type="button" class="btn btn-default btn-ln" data-dismiss="modal">
-                <span class="glyphicon glyphicon-remove-circle"></span>
-                            Cancelar
-        </button>
-        </a>
-
-      </div>
-    </div>
-  </div>
-</div>
-<!-- End Modal -->
-</div>
 
 <!-- Inicio Modal para actualizar o editar datos -->
 <div class="modal fade" id="Edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -180,7 +113,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel"><i class="glyphicon glyphicon-pencil"></i>Editar datos del Participante
+        <h4 class="modal-title" id="myModalLabel"><i class="glyphicon glyphicon-pencil"></i>Editar datos de la Aplicación
         </h4>
       </div>
       <div class="modal-body">
@@ -188,29 +121,23 @@
             <!--formulario inicio-->
         
             <div class="row">
-            <form role="form" class="form-horizontal" id="formEdit" action="actualizarPartisipante" method="post">
+            <form role="form" class="form-horizontal" id="formEdit" action="actualizarApp" method="post">
 
                 <div class="form-group">
                     <label class="col-sm-4 control-label" for="formGroup">
                         Nombre:
                     </label>
                     <div class="col-sm-4">
-                        <input class="form-control" type="text" id="formGroup" name = "cedula_edit" placeholder="Cédula" requered autofocus>
+                        <input class="form-control" type="text" id="formGroup" name = "nombre_edit" placeholder="Cédula" requered autofocus>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-sm-4 control-label" for="formGroup">
-                        Nivel Académico:
+                        App:
                     </label>
                     <div class="col-sm-3">
-                        <input class="form-control" type="text" id="formGroup" name = "nivel_academico_edit1" placeholder="Nivel Academico" disabled>
-                        <select class="form-control" name = "nivel_academico_edit2">
-                            <option>Ninguno</option>
-                            <option>Escritorio</option>
-                            <option>Web</option>
-                            <option>Movil</option>
-                        </select>
+                        <input class="form-control" type="text" id="formGroup" name = "tipo_edit1" placeholder="Tipo App" disabled>
                     </div>
                 </div>
 
@@ -236,7 +163,7 @@
 <!-- End Modal -->
 </div>
 <!---->
- <input id="val" type="hidden" name="partisipante" class="input-block-level" value="" >
+ <input id="val" type="hidden" name="aplicacion" class="input-block-level" value="" >
 
 <!--script json para editar partisipantes-->
 <script>
@@ -246,18 +173,15 @@ $(document).ready(function() {
   
     $('[name=aplicacion]').val($(this).attr ('id'));
     
-    var faction = "<?php echo URL::to('partisipante/getpartisipante/data'); ?>";
+    var faction = "<?php echo URL::to('aplicacion/getaplicacion/data'); ?>";
     
     var fdata = $('#val').serialize();
      $('#load').show();
     $.post(faction, fdata, function(json) {
         if (json.success) {
-            $('#formEdit input[name="partisipante_id"]').val(json.id);
-            $('#formEdit input[name="cedula_edit"]').val(json.cedula);
-            $('#formEdit input[name="nombres_edit"]').val(json.nombres);
-            $('#formEdit input[name="apellidos_edit"]').val(json.apellidos);
-            $('#formEdit input[name="nivel_academico_edit1"]').val(json.nivel_academico);
-            $('#formEdit input[name="profesion_edit"]').val(json.profesion);
+            $('#formEdit input[name="aplicacion_id"]').val(json.id);
+            $('#formEdit input[name="nombre_edit"]').val(json.nombre);
+            $('#formEdit input[name="tipo_edit1"]').val(json.tipo);
 
             $('#load').hide();
             

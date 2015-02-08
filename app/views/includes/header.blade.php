@@ -151,14 +151,8 @@
                         <li class="nav-header">Menú</li>
                         <li requered autofocus><a class="ajax-link" href="index_admin"><i class="glyphicon glyphicon-home"></i><span> Administración</span></a>
                         </li>
-                        <li class="nav-header hidden-md">Datos</li>
-                        <li><a class="ajax-link" href="<?=URL::to('partisipantes'); ?>">
-                            <i class="glyphicon glyphicon-user"></i><span> Partisipantes</span></a>
-                        </li>
-                        <li><a class="ajax-link" href="<?=URL::to('aplicaciones'); ?>">
-                            <i class="glyphicon glyphicon-align-justify"></i><span> Aplicaciones</span></a>
-                        </li>
-                        <li><a class="ajax-link" href="<?=URL::to('test'); ?>">
+                        <li class="nav-header hidden-md">Tests</li>
+                        <li><a class="ajax-link" href="<?=URL::to('tests'); ?>">
                             <i class="glyphicon glyphicon-folder-open"></i><span> Tests</span></a>
                         </li>
                         <li><a class="ajax-link" href="<?=URL::to('formulario'); ?>">
@@ -167,6 +161,14 @@
                         <li><a class="ajax-link" href="<?=URL::to('tareas'); ?>">
                             <i class="glyphicon glyphicon-folder-open"></i><span> Tareas</span></a>
                         </li>
+                        <li class="nav-header hidden-md">Datos</li>
+                        <li><a class="ajax-link" href="<?=URL::to('partisipantes'); ?>">
+                            <i class="glyphicon glyphicon-user"></i><span> Partisipantes</span></a>
+                        </li>
+                        <li><a class="ajax-link" href="<?=URL::to('aplicaciones'); ?>">
+                            <i class="glyphicon glyphicon-align-justify"></i><span> Aplicaciones</span></a>
+                        </li>
+
                         
                         <!--
                         <li><a href="formulario"><i class="glyphicon glyphicon-edit"></i><span>Formulario</span></a>

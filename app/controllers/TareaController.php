@@ -31,7 +31,7 @@ class TareaController extends BaseController
 
 		//validamos reglas inputs
 			$rules = array(
-				'enunciado' => 'required|max:300'
+				'enunciado' => 'required|max:1000'
 				);
 
 			$validation = Validator::make(Input::all(),$rules);
@@ -57,53 +57,31 @@ class TareaController extends BaseController
 
 	}
 
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
+	public function getDelete($tarea_id)
 	{
-		//
+		//se busca el registro segun el id
+		$tarea = Tarea::find($tarea_id);
+
+		//se elimina el registro encontrado
+		$tarea->delete();
+
+		//se retorna a la tabla de tareas
+		return Redirect::to('tareas')->with('status','ok_delete');
 	}
 
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
+	//permite editar o actualizar los datos de las tareas
+	public function postUpdate()
 	{
-		//
+			//opteniendo el id del tarea
+			$tarea_id = Input::get('tarea');
+			//se busca los datos del tarea dependiendo del id
+			$tarea = Tarea::find($tarea_id);
+			//se obtienen los datos de las cajas de texto y se los ingresa en la base de datos
+			$tarea->enunciado = Input::get('enunciado_edit');
+			//se guardan los cambios 
+			$tarea->save();
+			return Redirect::to('tareas')->with('status','ok_update');
 	}
-
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
 
 	/**
 	 * Remove the specified resource from storage.

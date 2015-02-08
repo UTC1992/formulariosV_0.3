@@ -51,40 +51,38 @@
 		}
 
 		//permite eliminar participantes
-		public function getDelete($partisipante_id)
+		public function getDelete($aplicacion_id)
 		{
-			//buscamos al usuaro en la base de datos
-			$partisipante = Partisipante::find($partisipante_id);
+			//buscamos a la aplicacion en la base de datos
+			$aplicacion = Aplicacion::find($aplicacion_id);
 
 			//eliminamos y reifirigos 
-			$partisipante->delete();
+			$aplicacion->delete();
 
-			//redirigimos a la tabla de partisiántes 
+			//redirigimos a la tabla de aplicaciones 
 			//con la variable status con el valor==>ok_delete
-			return Redirect::to('partisipantes')->with('status', 'ok_delete');
+			return Redirect::to('aplicaciones')->with('status', 'ok_delete');
 		}
 
 		//permite editar o actualizar los datos de los partisipantes
 		public function postUpdate()
 		{
 			//opteniendo el id del partisipante
-			$partisipante_id = Input::get('partisipante');
+			$aplicacion_id = Input::get('aplicacion');
 			//se busca los datos del participante dependiendo del id
-			$partisipante = Partisipante::find($partisipante_id);
+			$aplicacion = Aplicacion::find($aplicacion_id);
 			//se obtienen los datos de las cajas de texto y se los ingresa en la base de datos
-			$partisipante->cedula = Input::get('cedula_edit');
-			$partisipante->nombres = Input::get('nombres_edit');
-			$partisipante->apellidos = Input::get('apellidos_edit');
-			$nivelAcademico = Input::get('nivel_academico_edit2');
-			if ($nivelAcademico<>'Ninguno') 
+			$aplicacion->nombre = Input::get('nombre_edit');
+			$tipo = Input::get('tipo_edit2');
+			if ($tipo<>'Ninguno') 
 			{
 				//
-				$partisipante->nivel_academico = Input::get('nivel_academico_edit2');
+				$aplicacion->tipo = Input::get('tipo_edit2');
 			}
-			$partisipante->profesion = Input::get('profesion_edit');
+			
 			//se guardan los cambios 
-			$partisipante->save();
-			return Redirect::to('partisipantes')->with('status','ok_update');
+			$aplicacion->save();
+			return Redirect::to('aplicaciones')->with('status','ok_update');
 		}
 
 	}
