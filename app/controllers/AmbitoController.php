@@ -1,6 +1,6 @@
 <?php
 
-class TareaController extends BaseController 
+class AmbitoController extends BaseController 
 {
 	public function __construc()
 	{
@@ -15,8 +15,8 @@ class TareaController extends BaseController
 	public function getIndex()
 	{
 		
-		$tareas = DB::table('tareas')->get();
-		return View::make('tarea.tareas')->with('tareas',$tareas);
+		$ambitos = DB::table('ambitos')->get();
+		return View::make('ambitos.ambito')->with('ambitos',$ambitos);
 	}
 
 
@@ -31,7 +31,7 @@ class TareaController extends BaseController
 
 		//validamos reglas inputs
 			$rules = array(
-				'enunciado' => 'required|max:1000'
+				'nombre' => 'required|max:100'
 				);
 
 			$validation = Validator::make(Input::all(),$rules);
@@ -41,53 +41,46 @@ class TareaController extends BaseController
 				//return Redirect::to('admin')->withInput()->withErrors($validation);
 				//se redirecciona a la pagina de administracion con una variable 
 				//variable => status con el valor==>false_create
-				return Redirect::to('tareas')->with('status', 'no_create');
+				return Redirect::to('ambitos')->with('status', 'no_create');
 			}
 
 			//si todo esta bien guardamos los datos
-			$tarea = new Tarea;
-			$tarea->enunciado = Input::get('enunciado');
-
-			$form = DB::table('formularios')->where('nombre',Input::get('formulario'))->first();
-			$tarea->form_id = $form->id;
-
-			$ambito = DB::table('ambitos')->where('nombre',Input::get('ambito'))->first();
-			$tarea->ambitos_id = $ambito->id;
+			$ambitos = new Ambito;
+			$ambitos->nombre = Input::get('nombre');
 			
 			//guardamos
-			$tarea->save();
+			$ambitos->save();
 
 			//redirigimos a partisipantes
-			return Redirect::to('tareas')->with('status', 'ok_create');
+			return Redirect::to('ambitos')->with('status', 'ok_create');
 
 
 	}
 
-	public function getDelete($tarea_id)
+	public function getDelete($ambito_id)
 	{
 		//se busca el registro segun el id
-		$tarea = Tarea::find($tarea_id);
+		$ambito = Ambito::find($ambito_id);
 
 		//se elimina el registro encontrado
-		$tarea->delete();
+		$ambito->delete();
 
 		//se retorna a la tabla de tareas
-		return Redirect::to('tareas')->with('status','ok_delete');
+		return Redirect::to('ambitos')->with('status','ok_delete');
 	}
 
 	//permite editar o actualizar los datos de las tareas
 	public function postUpdate()
 	{
 			//opteniendo el id del tarea
-			$tarea_id = Input::get('tarea');
+			$ambito_id = Input::get('ambito');
 			//se busca los datos del tarea dependiendo del id
-			$tarea = Tarea::find($tarea_id);
+			$ambito = Ambito::find($ambito_id);
 			//se obtienen los datos de las cajas de texto y se los ingresa en la base de datos
-			$tarea->enunciado = Input::get('enunciado_edit');
+			$ambito->nombre = Input::get('nombre_edit');
 			//se guardan los cambios 
-			$tarea->save();
-			return Redirect::to('tareas')->with('status','ok_update');
+			$ambito->save();
+			return Redirect::to('ambitos')->with('status','ok_update');
 	}
-
 
 }

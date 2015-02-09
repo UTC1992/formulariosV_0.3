@@ -14,7 +14,15 @@
 		public function getIndex()
 		{
 			//$my_id = Auth::user()->id;
-			$partisipantes = DB::table('partisipantes')->get();
+			//$partisipantes = DB::table('partisipantes')->get();
+			$partisipantes = DB::table('partisipantes')
+					->join('tests', 'partisipantes.tests_id','=','tests.id')
+					->join('users',function($join)
+							{
+								$join->on('users.id','=','tests.users_id')
+										->where('users.id','=',Auth::user()->id);
+							})
+					->get();
 			return View::make('usuarios.partisipantes')->with('partisipantes', $partisipantes);
 		}
 

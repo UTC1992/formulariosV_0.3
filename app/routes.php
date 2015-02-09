@@ -81,10 +81,39 @@ Route::get('eliminarApp/{id}','AplicacionController@getDelete');
 
 //==========================TEST=====================================
 //mostrar tests
-Route::get('tests','TestController@getIndex');
+Route::controller('tests','TestController');
 //mostrar interfaz de registro de test
 Route::get('registroTest',function(){return View::make('tests.registro');});
 //registrar test
 Route::post('crearTest','TestController@postCreate');
 //eliminar test
 Route::get('eliminarTest/{id}','TestController@getDelete');
+
+//==========================FORMULARIOS=====================================
+//mostrar formularios
+Route::controller('formularios','FormularioController');
+//mostrar interfaz de registro de test
+Route::get('registroForm',function(){return View::make('formularios.registro');});
+//registrar formulario 
+Route::post('registrarForm','FormularioController@postCreate');
+//eliminar test
+Route::get('eliminarForm/{id}','FormularioController@getDelete');
+//optener datos de tarea
+Route::controller('formulario/getformulario','getformularioController');
+//actualizar datos de la tarea
+Route::post('actualizarForm','FormularioController@postUpdate');
+
+//==========================AMBITOS=====================================
+//mostrar ambitos de usabilidad para cada preguntas
+Route::controller('ambitos','AmbitoController');
+//mostrar interfaz de registro de ambito
+Route::get('registroAmbito',function(){return View::make('ambitos.registro');});
+//registrar ambito
+Route::post('registrarAmbito','AmbitoController@postCreate');
+//eliminar ambito
+Route::get('eliminarAmbito/{id}','AmbitoController@getDelete');
+//optener datos de ambito
+Route::controller('ambito/getambito','getAmbitoController');
+//actualizar datos de la ambito
+Route::post('actualizarAmbito','AmbitoController@postUpdate');
+

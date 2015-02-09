@@ -14,10 +14,19 @@
 		public function getIndex()
 		{
 			//$my_id = Auth::user()->id;
-			$aplicaciones = DB::table('aplicaciones')->get();
+			//$aplicaciones = DB::table('aplicaciones')->get();
+			$aplicaciones = DB::table('aplicaciones')
+					/*->join('tests','aplicaciones.id','=','tests.app_id')
+					->join('users',function($join)
+							{
+								$join->on('users.id','=','tests.users_id')
+										->where('users.id','=',Auth::user()->id);
+							})
+					*/->get();
 			return View::make('aplicacion.aplicaciones')->with('aplicaciones', $aplicaciones);
 		}
 
+		
 		//metodo para registrar un usuario
 		public function postCreate()
 		{

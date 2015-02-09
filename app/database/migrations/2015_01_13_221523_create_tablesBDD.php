@@ -35,6 +35,14 @@ class CreateTablesBDD extends Migration {
 			$table->timestamps();
 		});	
 		
+		Schema::create('formularios', function(Blueprint $table)
+		{
+			$table->increments('id')->unique();
+			$table->string('nombre');
+			$table->string('indicaciones',1000);
+			$table->timestamps();
+		});
+
 		Schema::create('tests', function(Blueprint $table)
 		{
 			$table->increments('id')->unique();
@@ -54,6 +62,13 @@ class CreateTablesBDD extends Migration {
 				->onDelete('cascade')
 				->onUpdate('cascade')
 				->unsigned();
+			$table->integer('form_id')
+				->foreign('form_id')
+				->references('id')
+				->on('formularios')
+				->onDelete('cascade')
+				->onUpdate('cascade')
+				->unsigned();
 	/*		//usuarios
 			$table->integer('partisipantes_id')
 				->foreign('partisipantes_id')
@@ -70,31 +85,15 @@ class CreateTablesBDD extends Migration {
 				->onDelete('cascade')
 				->onUpdate('cascade')
 				->unsigned();
-			$table->integer('form_id')
-				->foreign('form_id')
-				->references('id')
-				->on('formularios')
-				->onDelete('cascade')
-				->onUpdate('cascade')
-				->unsigned();
+			
 	*/
 			$table->timestamps();
 		});
-
-			
-
-		Schema::create('formularios', function(Blueprint $table)
+		
+		Schema::create('ambitos', function(Blueprint $table)
 		{
 			$table->increments('id')->unique();
-			$table->integer('aplicaciones_id')
-				->foreign('aplicaciones_id')
-				->references('id')
-				->on('aplicaciones')
-				->onDelete('cascade')
-				->onUpdate('cascade')
-				->unsigned();
-			$table->string('nombre');
-			$table->string('indicaciones',1000);
+			$table->string('nombre',1000);
 			$table->timestamps();
 		});
 
@@ -106,6 +105,13 @@ class CreateTablesBDD extends Migration {
 				->foreign('form_id')
 				->references('id')
 				->on('formularios')
+				->onDelete('cascade')
+				->onUpdate('cascade')
+				->unsigned();
+			$table->integer('ambitos_id')
+				->foreign('ambitos_id')
+				->references('id')
+				->on('ambitos')
 				->onDelete('cascade')
 				->onUpdate('cascade')
 				->unsigned();
@@ -127,7 +133,7 @@ class CreateTablesBDD extends Migration {
 				->on('tests')
 				->onDelete('cascade')
 				->onUpdate('cascade')
-				->unsigned();
+				->unsigned()->nullable();
 			$table->timestamps();
 		});
 

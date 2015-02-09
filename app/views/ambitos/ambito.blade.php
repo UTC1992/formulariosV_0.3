@@ -6,11 +6,12 @@
                 <a class="btn btn-primary btn-ln" href="index_admin">Inicio</a>
             </li>
             <li>
-                <a class="btn btn-primary btn-ln" href="formularios ">Formularios</a>
+                <a class="btn btn-primary btn-ln" href="table_admin"> Ámbitos</a>
             </li>
             <li>
-                <a class="btn btn-primary btn-ln" href="registroForm">Registrar formulario</a>
-            </li>
+                <a class="btn btn-primary btn-ln" class="ajax-link" href="registroAmbito" >
+                <i class=""></i><span>Crear Ámbito</span></a>
+            </li
         </ul>
     </div>
 
@@ -20,6 +21,19 @@
 
 <!--mensaje de confirmacion de eliminacion de usuario-->
     <?php $status=Session::get('status'); ?>
+    @if($status=='ok_create')
+    <div class="alert alert-success fade in">
+        <button class="close" data-dismiss="alert" type="button">x</button>
+        <i class="fa fa-check-square"></i>El usuario a sido creado correctamente
+    </div>
+    @endif
+    @if($status=='no_create')
+    <div class="alert alert-danger fade in">
+        <button class="close" data-dismiss="alert" type="button">x</button>
+        <i class="fa fa-check-square"></i>Error el usuario no fue ingresado
+    </div>
+    @endif
+
     @if($status=='ok_delete')
     <div class="alert alert-success fade in">
         <button class="close" data-dismiss="alert" type="button">x</button>
@@ -35,7 +49,7 @@
 <!--end mensaje de eliminacion-->
     <div class="box-inner">
     <div class="box-header well" data-original-title="">
-        <h2><i class="glyphicon glyphicon-user"></i>Participantes del Test</h2>
+        <h2><i class="glyphicon glyphicon-user"></i>Tareas a realizar por los usuarios</h2>
 
         <div class="box-icon">
             <a href="#" class="btn btn-minimize btn-round btn-default"><i
@@ -45,13 +59,13 @@
     <div class="box-content">
 
     <!-- $partisipantes es una variable enviada desde del controlador con with-->
-    @if($formularios)
+    @if($ambitos)
     <table class="table table-striped table-bordered bootstrap-datatable datatable responsive">
     <thead>
     <tr>
         <th>ID</th>
         <th>Nombre</th>
-        <th>Tipo</th>
+        <th>Fecha de Creación</th>
         <th>Operaciones</th>
     </tr>
     </thead>
@@ -60,24 +74,35 @@
     <tr>
         
         <!--asignamos a un bucle de array $partisipantes a partisipant-->
-        @foreach($formularios as $formulario)
-        <td class="center">{{$formulario->id}}</td>
-        <td class="center">{{$formulario->nombre}}</td>
-        <td class="center"><textarea class="col-sm-12" readonly="readonly">{{$formulario->indicaciones}}</textarea></td>
+        @foreach($ambitos as $ambito)
+        <td class="center">{{$ambito->id}}</td>
+        <td class="center">{{$ambito->nombre}}</td>
+        <td class="center">{{$ambito->created_at}}</td>
         <!--<td class="center">
             <span class="label-success label label-default">Active</span>
         </td>
         -->
         <td class="center">
-            <button class="btn btn-info" href="#" >
+            <!--
+            <a class="btn btn-success" href="#">
+                <i class="glyphicon glyphicon-zoom-in icon-white"></i>
+                Mostrar
+            </a>
+            
+            <a class="btn btn-info" href="#" data-toggle="modal" data-target="#editModal">
                 <i class="glyphicon glyphicon-edit icon-white"></i>
-                {{HTML::link('#Edit','Editar',array('class'=>'edit','id'=>$formulario->id,'data-toggle'=>'modal','title'=>$formulario->nombre))}}
+                Editar
+            </a>
+            -->
+            <button class="btn btn-info" >
+                <i class="glyphicon glyphicon-edit icon-white"></i>
+                {{HTML::link('#Edit','Editar',array('class'=>'edit','id'=>$ambito->id,'data-toggle'=>'modal'))}}
             </button>
-            <a class="btn btn-danger" href="<?=URL::to('eliminarForm'); ?>/{{$formulario->id}}">
+
+            <a class="btn btn-danger" href="<?=URL::to('eliminarAmbito'); ?>/{{$ambito->id}}">
                 <i class="glyphicon glyphicon-trash icon-white"></i>
                 Eliminar
             </a>
-
         </td>
     </tr>
     @endforeach
@@ -96,13 +121,13 @@
     <!--/span-->
 
 
-<!-- Inicio Modal para actualizar o editar datos -->
+<!-- Inicio Modal para actualizar tareas -->
 <div class="modal fade" id="Edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel"><i class="glyphicon glyphicon-pencil"></i>Editar datos de la Aplicación
+        <h4 class="modal-title" id="myModalLabel"><i class="glyphicon glyphicon-pencil"></i>Editar Tarea
         </h4>
       </div>
       <div class="modal-body">
@@ -110,26 +135,17 @@
             <!--formulario inicio-->
         
             <div class="row">
-            <form role="form" class="form-horizontal" id="formEdit" action="actualizarForm" method="post">
+            <form role="form" class="form-horizontal" id="formEdit" action="actualizarAmbito" method="post">
 
                 <div class="form-group">
-                    <label class="col-sm-4 control-label" for="formGroup">
+                    <label class="col-sm-3 control-label" for="formGroup">
                         Nombre:
                     </label>
-                    <div class="col-sm-4">
-                        <input class="form-control" type="text" id="formGroup" name = "nombre_edit" placeholder="Cédula" requered autofocus>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-sm-4 control-label" for="formGroup">
-                        Indicaciones:
-                    </label>
                     <div class="col-sm-6">
-                        <textarea class="form-control" id="formGroup" name="indicaciones_edit" placeholder="Indicaciones"></textarea>
+                        <input class="form-control" type="text" id="formGroup" name="nombre_edit" placeholder="Enunciado">
                     </div>
                 </div>
-
+                
     <!--formulario fin-->
       </div>
       <div class="modal-footer">
@@ -150,27 +166,28 @@
   </div>
 </div>
 <!-- End Modal -->
-</div>
+
 <!---->
- <input id="val" type="hidden" name="formulario" class="input-block-level" value="" >
+ <input id="val" type="hidden" name="ambito" class="input-block-level" value="" >
 
 <!--script json para editar partisipantes-->
 <script>
-$(document).ready(function() {
+$(document).ready(function() 
+{
   
-  $('.edit').click(function() {
+  $('.edit').click(function() 
+  {
   
-    $('[name=formulario]').val($(this).attr ('id'));
+    $('[name=ambito]').val($(this).attr ('id'));
     
-    var faction = "<?php echo URL::to('formulario/getformulario/data'); ?>";
+    var faction = "<?php echo URL::to('ambito/getambito/data'); ?>";
     
     var fdata = $('#val').serialize();
      $('#load').show();
     $.post(faction, fdata, function(json) {
         if (json.success) {
-            $('#formEdit input[name="formulario_id"]').val(json.id);
+            $('#formEdit input[name="ambito_id"]').val(json.id);
             $('#formEdit input[name="nombre_edit"]').val(json.nombre);
-            $('#formEdit textarea[name="indicaciones_edit"]').val(json.indicaciones);
 
             $('#load').hide();
             

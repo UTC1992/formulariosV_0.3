@@ -4,7 +4,7 @@
             <!--formulario inicio-->
         <center>
 
-        <h1>Registro de Usuarios</h1>
+        <h1>Registrar participantes</h1>
         <div class="well">
             <div class="row">
             <form class="form-horizontal" action="registrarPartisipantes" method="post">

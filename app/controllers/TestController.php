@@ -10,7 +10,7 @@
 		//permite mostrar los test en una tabla dinamica
 		public function getIndex()
 		{
-			$tests = DB::table('tests')->get();
+			$tests = DB::table('tests')->where('users_id',Auth::user()->id)->get();
 			return View::make('tests.test')->with('tests', $tests);
 		}
 
@@ -23,14 +23,17 @@
 			$test = new Test;
 			$test->users_id = Input::get('userAdmin');
 			$test->estado = Input::get('estado');
-			
+			$form = DB::table('formularios')->where('nombre',Input::get('formulario'))->first();
+			$test->form_id = $form->id; 
+
+			//$app = Input::get('aplicacion');
+			$app = DB::table('aplicaciones')->where('nombre',Input::get('aplicacion'))->first();
+			$test->app_id = $app->id;
 			//guardamos
 			$test->save();
 
 			//redirigimos a partisipantes
-			//return Redirect::to('registroApp')->with('test', $test->id);
-			return View::make('aplicacion.registro')->with('test', $test->id);
-			//return View::make('aplicacion.registro')->with('test', $test->id);
+			return Redirect::to('tests')->with('status', 'ok_create');
 
 		}
 

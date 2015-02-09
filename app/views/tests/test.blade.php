@@ -57,6 +57,8 @@
     <tr>
         <th>ID</th>
         <th>Creador</th>
+        <th>Aplicación</th>
+        <th>Formulario</th>
         <th>Estado</th>
         <th>Fecha de Creación</th>
         <th>Operaciones</th>
@@ -69,9 +71,14 @@
         <!--asignamos a un bucle de array $partisipantes a partisipant-->
         @foreach($tests as $test)
         <td class="center">{{$test->id}}</td>
-        <td class="center">{{Auth::user()->nombres}} {{Auth::user()->apellidos}}</td>
-        <td class="center">{{$test->estado}}</td>
-        <td class="center">{{$test->created_at}}</td>
+        <td class="col-sm-2">{{Auth::user()->nombres}} {{Auth::user()->apellidos}}</td>
+        <?php $app = DB::table('aplicaciones')->where('id',$test->app_id)->first(); ?>
+        <td class="col-sm-1">{{$app->nombre}}</td>
+        <?php $form = DB::table('formularios')->where('id',$test->form_id)->first(); ?>
+        <td class="col-sm-3">{{$form->nombre}}</td>
+        <td class="col-sm-1">{{$test->estado}}</td>
+        <td class="col-sm-2">{{$test->created_at}}</td>
+        
         <!--<td class="center">
             <span class="label-success label label-default">Active</span>
         </td>
@@ -87,11 +94,12 @@
                 <i class="glyphicon glyphicon-edit icon-white"></i>
                 Editar
             </a>
-            -->
+            
             <button class="btn btn-info" href="#" >
                 <i class="glyphicon glyphicon-edit icon-white"></i>
                 {{HTML::link('#Edit','Editar',array('class'=>'edit','id'=>$test->id,'data-toggle'=>'modal','title'=>'Test'))}}
             </button>
+            -->
             <a class="btn btn-danger" href="<?=URL::to('eliminarTest'); ?>/{{$test->id}}">
                 <i class="glyphicon glyphicon-trash icon-white"></i>
                 Eliminar

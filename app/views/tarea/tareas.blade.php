@@ -10,7 +10,7 @@
             </li>
             <li>
                 <a class="btn btn-primary btn-ln" class="ajax-link" href="registroTareas" >
-                <i class=""></i><span>Nueva Tarea</span></a>
+                <i class=""></i><span>Crear Tarea</span></a>
             </li
         </ul>
     </div>
@@ -65,6 +65,8 @@
     <tr>
         <th>ID</th>
         <th>Enunciado</th>
+        <th>Formulario</th>
+        <th>Ámbito</th>
         <th>Fecha de Creación</th>
         <th>Operaciones</th>
     </tr>
@@ -76,8 +78,12 @@
         <!--asignamos a un bucle de array $partisipantes a partisipant-->
         @foreach($tareas as $tarea)
         <td class="center">{{$tarea->id}}</td>
-        <td class="center"><textarea class="col-sm-12" disabled>{{$tarea->enunciado}}</textarea></td>
-        <td class="center">{{$tarea->created_at}}</td>
+        <td class="col-sm-3"><textarea class="col-sm-12" readonly="readonly">{{$tarea->enunciado}}</textarea></td>
+        <?php $form = DB::table('formularios')->where('id',$tarea->form_id)->first(); ?>
+        <td class="col-sm-2">{{$form->nombre}}</td>
+        <?php $ambito = DB::table('ambitos')->where('id',$tarea->ambitos_id)->first(); ?>
+        <td class="col-sm-2">{{$ambito->nombre}}</td>
+        <td class="col-sm-2">{{$tarea->created_at}}</td>
         <!--<td class="center">
             <span class="label-success label label-default">Active</span>
         </td>

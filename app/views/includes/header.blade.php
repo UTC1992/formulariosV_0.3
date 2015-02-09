@@ -155,11 +155,14 @@
                         <li><a class="ajax-link" href="<?=URL::to('tests'); ?>">
                             <i class="glyphicon glyphicon-folder-open"></i><span> Tests</span></a>
                         </li>
-                        <li><a class="ajax-link" href="<?=URL::to('formulario'); ?>">
+                        <li><a class="ajax-link" href="<?=URL::to('formularios'); ?>">
                             <i class="glyphicon glyphicon-list-alt"></i><span> Formularios</span></a>
                         </li>
                         <li><a class="ajax-link" href="<?=URL::to('tareas'); ?>">
                             <i class="glyphicon glyphicon-folder-open"></i><span> Tareas</span></a>
+                        </li>
+                        <li><a class="ajax-link" href="<?=URL::to('ambitos'); ?>">
+                            <i class="glyphicon glyphicon-folder-open"></i><span> Ámbitos</span></a>
                         </li>
                         <li class="nav-header hidden-md">Datos</li>
                         <li><a class="ajax-link" href="<?=URL::to('partisipantes'); ?>">
