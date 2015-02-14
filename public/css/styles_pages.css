@@ -39,4 +39,27 @@ body{
 
 		}
 
+		#formulario_sha{
+			max-width: 750px;
+			-webkit-box-shadow: 0px 0px 18px 0px rgba(48,50,50,0.48);
+			-moz-box-shadow: 	0px 0px 18px 0px rgba(48,50,50,0.48);
+			box-shadow:  		0px 0px 18px 0px rgba(48,50,50,0.48);
+			border-radius: 0%;
+		}
+		#formulario{
+			
+			width: 700px;
+			margin: 0px auto 10px;
+			display: block;
+			font-family: calibri;
+			font-size: 10pt;
+		}
 		
+		/*PAGINA PARA CREAR PESTAÑAS 
+		http://programandoointentandolo.com/2012/11/como-crear-pestanas-con-html.html*/
+
+		#tabs
+		{
+			position: relative;
+
+		}

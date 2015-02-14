@@ -171,8 +171,11 @@
                         <li><a class="ajax-link" href="<?=URL::to('aplicaciones'); ?>">
                             <i class="glyphicon glyphicon-align-justify"></i><span> Aplicaciones</span></a>
                         </li>
+                        <li class="nav-header hidden-md"> Vista tests</li>
+                        <li><a class="ajax-link" href="<?=URL::to('testUsabilidad'); ?>">
+                            <i class="glyphicon glyphicon-user"></i><span> Visualizar Test</span></a>
+                        </li>
 
-                        
                         <!--
                         <li><a href="formulario"><i class="glyphicon glyphicon-edit"></i><span>Formulario</span></a>
                         <li class="nav-header hidden-md">Usuarios</li>

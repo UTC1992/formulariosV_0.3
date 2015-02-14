@@ -117,3 +117,6 @@ Route::controller('ambito/getambito','getAmbitoController');
 //actualizar datos de la ambito
 Route::post('actualizarAmbito','AmbitoController@postUpdate');
 
+//==========================AMBITOS=====================================
+//mostrar test de usabilidad para vista previa
+Route::get('testUsabilidad',function(){return View::make('test_usabilidad.testU');});
