@@ -15,15 +15,20 @@
 		{
 			//$my_id = Auth::user()->id;
 			//$partisipantes = DB::table('partisipantes')->get();
-			$partisipantes = DB::table('partisipantes')
+			if(Auth::check())
+			{
+				$partisipantes = DB::table('partisipantes')
 					->join('tests', 'partisipantes.tests_id','=','tests.id')
 					->join('users',function($join)
 							{
 								$join->on('users.id','=','tests.users_id')
 										->where('users.id','=',Auth::user()->id);
 							})
-					->get();
-			return View::make('usuarios.partisipantes')->with('partisipantes', $partisipantes);
+					->get();	
+				return View::make('usuarios.partisipantes')->with('partisipantes', $partisipantes);
+			}
+			
+			
 		}
 
 		//metodo para registrar un usuario
@@ -35,7 +40,8 @@
 				'nombres' => 'required|max:50',
 				'apellidos' => 'required|max:60',
 				'nivelAcademico' => 'required|max:50', 
-				'profesion' => 'required|max:50'
+				'profesion' => 'required|max:50',
+				'aplicacion' => 'required|min:5'
 				);
 
 			$validation = Validator::make(Input::all(),$rules);
@@ -55,6 +61,10 @@
 			$partisipante->apellidos = Input::get('apellidos');
 			$partisipante->nivel_academico = Input::get('nivelAcademico');
 			$partisipante->profesion = Input::get('profesion');
+			$app_name = Input::get('aplicacion');
+			$app_test = DB::table('aplicaciones')->where('nombre',$app_name)->first();
+			$test = DB::table('tests')->where('app_id',$app_test->id)->first();
+			$partisipante->tests_id = $test->id;
 			
 			//guardamos
 			$partisipante->save();

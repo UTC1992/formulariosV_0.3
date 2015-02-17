@@ -17,8 +17,8 @@
         http://twitter.com/halalit_usman
         ===
     -->
-
     @include('includes.styles')
+    
 
     <meta charset="utf-8">
     <title>Administración</title>
@@ -54,7 +54,6 @@
 
     <!-- The fav icon -->
     <link rel="shortcut icon" href="img/administracion.png">
-
 </head>
 
 <body>

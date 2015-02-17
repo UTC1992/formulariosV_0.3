@@ -1,32 +1,59 @@
 @include('includes.styles')
+
 <style type="text/css">
-      ul.menuVert1 {
-        width: 100px; 
-        list-style: none;
-        text-align: center;  
-        padding:0;
-      }
+  /*** Sticky Menu ***/
+  ul {
+    background-color: #1ba1e2;
+    height: 35px;
+    position: fixed;
+    top: 15px;
+    left: 0;
+    width: 100%;
+}
+
+ul li {
+  width: auto;
+    line-height: 35px;
+    display: flex;
+    padding-right: 50px;
+}
+ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+}
+ul li a:hover {
+    text-decoration: underline;
+}
 </style>
-<script>$(function(){$( "#tabs" ).tabs();});$(function(){$( "#tabs2" ).tabs();});</script>
+
+<script>$(function(){$( "#tabs" ).tabs();});</script>
 <div class="container well" id="formulario_sha">
     <div class="row">
-        <div id="tabs">
-              <ul class="menuVert1">
+        <center><h2>Bienvenido evaluaremos la aplicación: </h2></center>
+              <div>
+                <p>Indicaciones:</p>
+                <p>Ingrese a cada uno de los aspectos que se encuentran en el menú y responda cada uno de los ítems por favor.</p>
+              </div>
+        <div id="tabs" class="well">
+              <ul id="menuVert1" class="nav nav-pills nav-stacked main-menu" >
+                <h4>Aspectos a evaluar:</h4>
               <?php $ambitos = DB::table('ambitos')->get(); $numPag = 1; 
               ?>
               @if($ambitos)
                 @foreach($ambitos as $ambito)
-                  <li><a href="#tabs-{{$ambito->id}}">{{'Pag '.$numPag++}}</a></li>
+                  <li><a href="#tabs-{{$ambito->id}}">{{'Aspecto '.$numPag++}}</a></li>
                 @endforeach
+                  <li><a href="#tabs-10"> Finalizar  </a></li>
               </ul>
               @endif
               
               @if($ambitos)
               @foreach($ambitos as $ambito)
-              <div id="tabs-{{$ambito->id}}">
+              <div id="tabs-{{$ambito->id}}" class="derecha">
                 <form class="form-horizontal well" action="guardarResp" method="post" id="formulario">
                     <div class="col-xs-12">
-                      <center><h3>Página de inicio</h3></center>
+                      <center><h3>{{$ambito->nombre}}</h3></center>
                     </div>
                     <?php $tareas = DB::table('tareas')->where("ambitos_id", $ambito->id)->get(); ?>
 

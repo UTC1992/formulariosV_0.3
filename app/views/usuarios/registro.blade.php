@@ -13,7 +13,7 @@
                     <label class="col-sm-4 control-label" for="formGroup">
                         Cédula:
                     </label>
-                    <div class="col-sm-6">
+                    <div class="col-sm-3">
                         <input class="form-control" type="text" id="formGroup" name = "cedula" placeholder="Cédula" requered autofocus>
                     </div>
                 </div>
@@ -22,7 +22,7 @@
                     <label class="col-sm-4 control-label" for="formGroup">
                         Nombres:
                     </label>
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                         <input class="form-control" type="text" id="formGroup" name ="nombres" placeholder="Nombres">
                     </div>
                 </div>
@@ -31,7 +31,7 @@
                     <label class="col-sm-4 control-label" for="formGroup">
                         Apellidos:
                     </label>
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                         <input class="form-control" type="text" id="formGroup" name = "apellidos" placeholder="Apellidos">
                     </div>
                 </div>
@@ -40,7 +40,7 @@
                     <label class="col-sm-4 control-label" for="formGroup">
                         Nivel Académico:
                     </label>
-                    <div class="col-sm-6">
+                    <div class="col-sm-3">
                         <select class="form-control" name = "nivelAcademico">
                             <option>Ninguno</option>
                             <option>Primero</option>
@@ -54,8 +54,28 @@
                     <label class="col-sm-4 control-label" for="formGroup">
                         Profesión:
                     </label>
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                         <input class="form-control" type="text" id="formGroup" name = "profesion" placeholder="Profesión">
+                    </div>
+                </div>
+                <?php $tests = DB::table('tests')->where('users_id',Auth::user()->id)->get(); 
+                ?>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="formGroup">
+                        Test:
+                    </label>
+                    <div class="col-sm-3">
+                        <select class="form-control" name = "aplicacion">
+                            @if($tests)
+                            @foreach($tests as $test)
+                                <option>Ninguna</option>
+                                <?php $apps = DB::table('aplicaciones')->where('id',$test->app_id)->first(); ?>
+                                <option>{{$apps->nombre}}</option>
+                            @endforeach 
+                            @else
+                                <option>Ninguna</option>
+                            @endif
+                        </select>
                     </div>
                 </div>
             </div>

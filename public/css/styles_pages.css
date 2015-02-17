@@ -40,7 +40,7 @@ body{
 		}
 
 		#formulario_sha{
-			max-width: 750px;
+			max-width: 740px;
 			-webkit-box-shadow: 0px 0px 18px 0px rgba(48,50,50,0.48);
 			-moz-box-shadow: 	0px 0px 18px 0px rgba(48,50,50,0.48);
 			box-shadow:  		0px 0px 18px 0px rgba(48,50,50,0.48);
@@ -48,7 +48,7 @@ body{
 		}
 		#formulario{
 			
-			width: 700px;
+			width: 670px;
 			margin: 0px auto 10px;
 			display: block;
 			font-family: calibri;
@@ -58,8 +58,38 @@ body{
 		/*PAGINA PARA CREAR PESTAÑAS 
 		http://programandoointentandolo.com/2012/11/como-crear-pestanas-con-html.html*/
 
-		#tabs
+		.derecha
 		{
-			position: relative;
+			float: right;
+			padding-right: 0px;
+		}
 
+		#tabs {
+			float: right;
+		}
+		
+		#menuVert1 {
+		color: black;
+        border-radius: 0%;
+        width: 160px; 
+        list-style: none;
+        background-color: white;
+        background-size: 0px;
+        padding-top: 0px;
+        padding-left: 40px;
+        float: left;
+        border-width: 0px;
+        display: inline-block;
+      	}
+
+      	#saludo{
+      		width: 400px;
+      		height: 350px;
+      		padding: 30px;
+      	}
+      	
+		#test_icon
+		{
+			width: 60px;
+			height: 60px;
 		}

@@ -12,7 +12,13 @@
 */
 
 //ruta raiz inicial al ingresar a la aplicacion
-Route::get('/', function(){return View::make('login');});
+Route::get('/', function(){return View::make('index');});
+
+//interfaz de autentificacion admin
+Route::get('login_admin', function(){return View::make('login');});
+
+//interfaz autentificacion partisipante
+Route::get('login_partisipante', function(){return View::make('usuarios.login');});
 
 //login autenticar datos
 Route::post('login','UserLogin@user');
@@ -52,6 +58,7 @@ Route::get('eliminarPartisipante/{id}','PartisipanteController@getDelete');
 Route::controller('partisipante/getpartisipante','getpartisipanteController');
 //actualizar los datos obtenidos
 Route::post('actualizarPartisipante','PartisipanteController@postUpdate');
+
 
 //=======================CRUD DE LAS TAREAS==============
 //mostrar tareas
@@ -117,6 +124,13 @@ Route::controller('ambito/getambito','getAmbitoController');
 //actualizar datos de la ambito
 Route::post('actualizarAmbito','AmbitoController@postUpdate');
 
-//==========================AMBITOS=====================================
+//==========================TEST DE USABILIDAD=====================================
 //mostrar test de usabilidad para vista previa
 Route::get('testUsabilidad',function(){return View::make('test_usabilidad.testU');});
+//ingresar al test de usabilidad
+Route::get('realizar_test',function(){return View::make('test_usabilidad.testU');});
+//saludo antes del test
+Route::get('saludo',function(){return View::make('test_usabilidad.saludo');});
+
+//====================LOGIN INGRESO AL TEST
+Route::post('login_ingresoTest','PartisipanteLogin@Partisipante');

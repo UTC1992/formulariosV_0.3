@@ -16,19 +16,16 @@
 				<img src="{{asset('img/Login.png')}}" alt="" class="img-responsive" id="login">
 			</div>
 		</div>
-		<form class="login" action="login" method="POST">
-			@if (Session::has('login_errors'))
-			<p style="color:red">El nombre de usuario o contraseña son incorrectos.</p>
+		<form class="login" action="login_ingresoTest" method="POST">
+			@if (Session::has('login_partisipante'))
+			<p style="color:red">El numero de cedula es incorrecto.</p>
 			@else
-			<p>Introdusca usuario y contraseña para continuar.</p>
+			<p>Introdusca su numero de cédula para continuar.</p>
 			@endif
 			<div class="form-group">
-				<input type="text" class="form-control" placeholder="Username" name="username" id="username"  requered autofocus>
+				<input type="text" class="form-control" placeholder="N° Cédula" name="cedula" id="cedula"  requered autofocus>
 			</div>
-			<div class="form-group">
-				<input type="password" class="form-control" placeholder="Contraseña" name="password" id="password" requered>
-			</div>
-			<button class="btn btn-lg btn-primary btn-block" type="submit">Iniciar Sesión</button>
+			<button class="btn btn-lg btn-primary btn-block" type="submit">Iniciar Test</button>
 			<div class="checkbox">
 				<!--
 				<label class="checkbox">
@@ -36,7 +33,6 @@
 				</label>
 				-->
 				<br>
-				<p><a href="<?=URL::to('registroAdmin') ?>" style="font-size: 13pt;">Registrarce</a></p>
 				<p><a href="<?=URL::to('/') ?>" style="font-size: 13pt;">Salir</a></p>
 			</div>			
 		</form>

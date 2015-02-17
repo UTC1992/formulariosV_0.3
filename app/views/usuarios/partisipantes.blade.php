@@ -57,6 +57,7 @@
     <thead>
     <tr>
         <th>ID</th>
+        <th>Test App</th>
         <th>Cédula</th>
         <th>Nombres</th>
         <th>Apellidos</th>
@@ -73,6 +74,7 @@
         <!--asignamos a un bucle de array $partisipantes a partisipant-->
         @foreach($partisipantes as $partisipante)
         <td class="center">{{$partisipante->id}}</td>
+        <td class="center">{{$partisipante->tests_id}}</td>
         <td class="center">{{$partisipante->cedula}}</td>
         <td class="center">{{$partisipante->nombres}}</td>
         <td class="center">{{$partisipante->apellidos}}</td>
