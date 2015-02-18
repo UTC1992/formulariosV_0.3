@@ -62,7 +62,7 @@
     <div class="navbar navbar-default" role="navigation">
 
         <div class="navbar-inner">
-            <
+            
             <button type="button" class="navbar-toggle pull-left animated flip">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
@@ -130,27 +130,28 @@
                         </li>
                         <li class="nav-header hidden-md">Tests</li>
                         <li><a class="ajax-link" href="<?=URL::to('tests'); ?>">
-                            <i class="glyphicon glyphicon-folder-open"></i><span> Tests</span></a>
+                            <i class=""></i><span> Tests</span></a>
                         </li>
                         <li><a class="ajax-link" href="<?=URL::to('formularios'); ?>">
-                            <i class="glyphicon glyphicon-list-alt"></i><span> Formularios</span></a>
+                            <i class=""></i><span> Formularios</span></a>
                         </li>
                         <li><a class="ajax-link" href="<?=URL::to('tareas'); ?>">
-                            <i class="glyphicon glyphicon-folder-open"></i><span> Tareas</span></a>
+                            <i class=""></i><span> Tareas</span></a>
                         </li>
                         <li><a class="ajax-link" href="<?=URL::to('ambitos'); ?>">
-                            <i class="glyphicon glyphicon-folder-open"></i><span> Ámbitos</span></a>
-                        </li>
-                        <li class="nav-header hidden-md">Datos</li>
-                        <li><a class="ajax-link" href="<?=URL::to('partisipantes'); ?>">
-                            <i class="glyphicon glyphicon-user"></i><span> Partisipantes</span></a>
+                            <i class=""></i><span> Ámbitos</span></a>
                         </li>
                         <li><a class="ajax-link" href="<?=URL::to('aplicaciones'); ?>">
-                            <i class="glyphicon glyphicon-align-justify"></i><span> Aplicaciones</span></a>
+                            <i class=""></i><span> Aplicaciones</span></a>
                         </li>
+                        <li class="nav-header hidden-md">Parisipantes</li>
+                        <li><a class="ajax-link" href="<?=URL::to('partisipantes'); ?>">
+                            <i class=""></i><span> Partisipantes</span></a>
+                        </li>
+                        
                         <li class="nav-header hidden-md"> Vista tests</li>
                         <li><a class="ajax-link" href="<?=URL::to('testUsabilidad'); ?>">
-                            <i class="glyphicon glyphicon-user"></i><span> Visualizar Test</span></a>
+                            <i class=""></i><span> Visualizar Test</span></a>
                         </li>
 
                         <!--

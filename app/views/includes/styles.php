@@ -17,4 +17,4 @@
 <script type="text/javascript" src="js/js_testUsabilidad/menu_flotante.js"></script>
 
 <!--TABULAR RESPUESTAS-->
-<script type="text/javascript" src="js/js_testUsabilidad/tabular_respuestas.js"></script>
+<script type="text/javascript" src="js/js_testUsabilidad/tabulacionConteo.js"></script>

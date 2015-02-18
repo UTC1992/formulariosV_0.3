@@ -62,6 +62,7 @@ body{
 		{
 			float: right;
 			padding-right: 0px;
+
 		}
 
 		#tabs {
@@ -96,5 +97,10 @@ body{
 		table p {
 			
 			text-align: justify;
+			font-size: 12pt;
+		}
+
+		#formularioRes
+		{
 			font-size: 12pt;
 		}
