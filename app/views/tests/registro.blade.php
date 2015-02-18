@@ -67,7 +67,7 @@
                         </select>
                     </div>
                 </div>
-
+                <!--se optiene el id del administrador par ingresarlo luego en la tabla test en la BD-->
                 <input id="userAdmin" type="hidden" name="userAdmin" class="input-block-level" value="{{Auth::user()->id}}" >
             </div>
     <!--formulario fin-->

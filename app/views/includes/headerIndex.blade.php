@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -61,6 +59,11 @@
             height: 60px;
         }
     </style>
+    <script>
+        $(function () {
+              $('[data-toggle="tooltip"]').tooltip()
+            })
+    </script>
 </head>
 
 <body>
@@ -88,7 +91,7 @@
             
 
             <div class="btn-group pull-right theme-container animated tada">
-                <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" data-toggle="tooltip" data-placement="rigth" title="Cambiar el Tema" >
                     <i class="glyphicon glyphicon-tint"></i><span
                         class="hidden-sm hidden-xs"> Cambiar Tema</span>
                     <span class="caret"></span>
@@ -106,15 +109,15 @@
                 </ul>
             </div>
 
-            <div class="btn-group pull-left theme-container tada">
-                <a href="login_admin"class="btn btn-default dropdown-toggle" >
+            <div class="btn-group pull-left theme-container tada" >
+                <a href="login_admin"class="btn btn-default dropdown-toggle" data-toggle="tooltip" data-placement="bottom" title="Ingreso para el Administrador" >
                     <i class="glyphicon glyphicon-tint"></i><span class="hidden-sm hidden-xs"> 
                     Administrar</span>
                 </a>
             </div>
 
             <div class="btn-group pull-left theme-container tada">
-                <a href="login_partisipante" class="btn btn-default dropdown-toggle">
+                <a href="login_partisipante" class="btn btn-default dropdown-toggle" data-toggle="tooltip" data-placement="bottom" title="Ingresar al test de usabilidad">
                     <i class="glyphicon glyphicon-tint"></i><span class="hidden-sm hidden-xs"> 
                         Ingresar al test</span>
                 </a>

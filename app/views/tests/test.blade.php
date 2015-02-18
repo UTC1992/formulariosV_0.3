@@ -100,6 +100,10 @@
                 {{HTML::link('#Edit','Editar',array('class'=>'edit','id'=>$test->id,'data-toggle'=>'modal','title'=>'Test'))}}
             </button>
             -->
+            <a class="btn btn-info edit" id="{{$test->id}}"  data-toggle="modal" href="<?=URL::to('#Edit'); ?>">
+                <i class="glyphicon glyphicon-trash icon-white"></i>
+                Editar
+            </a>
             <a class="btn btn-danger" href="<?=URL::to('eliminarTest'); ?>/{{$test->id}}">
                 <i class="glyphicon glyphicon-trash icon-white"></i>
                 Eliminar
@@ -138,58 +142,59 @@
             <!--formulario inicio-->
         
             <div class="row">
-            <form role="form" class="form-horizontal" id="formEdit" action="actualizarPartisipante" method="post">
+            <form role="form" class="form-horizontal" id="formEdit" action="actualizarTest" method="post">
 
                 <div class="form-group">
-                    <label class="col-sm-4 control-label" for="formGroup">
-                        Cédula:
+                    <label class="col-sm-3 control-label" for="formGroup">
+                        Creado por:
                     </label>
                     <div class="col-sm-4">
-                        <input class="form-control" type="text" id="formGroup" name = "cedula_edit" placeholder="Cédula" requered autofocus>
+                        <input class="form-control" type="text" id="formGroup" name = "creador_edit" placeholder="Creador" value="" disabled>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-4 control-label" for="formGroup">
-                        Nombres:
-                    </label>
-                    <div class="col-sm-6">
-                        <input class="form-control" type="text" id="formGroup" name ="nombres_edit" placeholder="Nombres">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-sm-4 control-label" for="formGroup">
-                        Apellidos:
-                    </label>
-                    <div class="col-sm-6">
-                        <input class="form-control" type="text" id="formGroup" name = "apellidos_edit" placeholder="Apellidos">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-sm-4 control-label" for="formGroup">
-                        Nivel Académico:
+                    <label class="col-sm-3 control-label" for="formGroup">
+                        Estado:
                     </label>
                     <div class="col-sm-3">
-                        <input class="form-control" type="text" id="formGroup" name = "nivel_academico_edit1" placeholder="Nivel Academico" disabled>
-                        <select class="form-control" name = "nivel_academico_edit2">
-                            <option>Ninguno</option>
-                            <option>Primero</option>
-                            <option>Segundo</option>
-                            <option>Tercer</option>
+                        <select class="form-control"  name="estado_edit">
+                            <option>Seleccione</option>
+                            <option>Abierto</option>
+                            <option>Cerrado</option>
+                        </select>
+                    </div>
+                </div>
+                <?php  $apps = DB::table('aplicaciones')->get();?>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" for="formGroup">
+                        Aplicación:
+                    </label>
+                    <div class="col-sm-3">
+                        <select class="form-control" name = "aplicacion_edit">
+                            <option>Seleccione</option>
+                        @foreach($apps as $app)
+                            <option>{{$app->nombre}}</option>
+                        @endforeach
+                        </select>
+                    </div>
+                </div>
+                
+                <?php  $forms = DB::table('formularios')->get();?>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" for="formGroup">
+                        Formularios:
+                    </label>
+                    <div class="col-sm-3">
+                        <select class="form-control" name = "formulario_edit">
+                            <option>Seleccione</option>
+                        @foreach($forms as $form)
+                            <option>{{$form->nombre}}</option>
+                        @endforeach
                         </select>
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label class="col-sm-4 control-label" for="formGroup">
-                        Profesión:
-                    </label>
-                    <div class="col-sm-6">
-                        <input class="form-control" type="text" id="formGroup" name = "profesion_edit" placeholder="Profesión">
-                    </div>
-                </div>
     <!--formulario fin-->
       </div>
       <div class="modal-footer">
@@ -213,7 +218,7 @@
 </div>
 
 <!---->
- <input id="val" type="hidden" name="partisipante" class="input-block-level" value="" >
+ <input id="val" type="hidden" name="test" class="input-block-level" value="" >
 
 <!--script json para editar partisipantes-->
 <script>
@@ -221,20 +226,20 @@ $(document).ready(function() {
   
   $('.edit').click(function() {
   
-    $('[name=partisipante]').val($(this).attr ('id'));
+    $('[name=test]').val($(this).attr ('id'));
     
-    var faction = "<?php echo URL::to('partisipante/getpartisipante/data'); ?>";
+    var faction = "<?php echo URL::to('test/gettest/data'); ?>";
     
     var fdata = $('#val').serialize();
      $('#load').show();
     $.post(faction, fdata, function(json) {
         if (json.success) {
-            $('#formEdit input[name="partisipante_id"]').val(json.id);
-            $('#formEdit input[name="cedula_edit"]').val(json.cedula);
-            $('#formEdit input[name="nombres_edit"]').val(json.nombres);
-            $('#formEdit input[name="apellidos_edit"]').val(json.apellidos);
-            $('#formEdit input[name="nivel_academico_edit1"]').val(json.nivel_academico);
-            $('#formEdit input[name="profesion_edit"]').val(json.profesion);
+            $('#formEdit input[name="test_id"]').val(json.id);
+            $('#formEdit input[name="creador_edit"]').val(json.creador);
+            $('#formEdit select[name="aplicacion_edit"]').val(json.aplicacion);
+            $('#formEdit select[name="formulario_edit"]').val(json.formulario);
+            $('#formEdit select[name="estado_edit"]').val(json.estado);
+            $('#formEdit input[name="fecha_edit"]').val(json.fecha_creacion);
 
             $('#load').hide();
             

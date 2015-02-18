@@ -63,7 +63,7 @@
 					<label class="col-sm-3 control-label" for="formGroup" id="tel">
 						Email:
 					</label>
-					<div class="input-group col-sm-3">
+					<div class="input-group col-sm-4">
 						<span class="input-group-addon">@</span>
 						<input class="form-control" type="email" name="email" id="formGroup" value="{{$user->email}}" placeholder="Tu Email" disabled>
 					</div>

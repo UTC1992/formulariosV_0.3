@@ -16,7 +16,7 @@
 			}
 			else
 			{
-				return Redirect::to('/')->with('login_errors', true);
+				return Redirect::to('login_admin')->with('login_errors', true);
 			}
 			return Redirect::to("index_admin");
 		}
