@@ -45,7 +45,9 @@
     <div class="box-content">
 
     <!-- $partisipantes es una variable enviada desde del controlador con with-->
-    @if($aplicaciones)
+    <?php $tests = DB::table('tests')->where('users_id',Auth::user()->id)->get(); 
+                ?>
+    @if($tests)
     <table class="table table-striped table-bordered bootstrap-datatable datatable responsive">
     <thead>
     <tr>
@@ -58,12 +60,14 @@
 
     <tbody>
     <tr>
+
         
         <!--asignamos a un bucle de array $partisipantes a partisipant-->
-        @foreach($aplicaciones as $aplicacion)
-        <td class="center">{{$aplicacion->id}}</td>
-        <td class="center">{{$aplicacion->nombre}}</td>
-        <td class="center">{{$aplicacion->tipo}}</td>
+        @foreach($tests as $test)
+        <?php $apps = DB::table('aplicaciones')->where('id',$test->app_id)->first(); ?>
+        <td class="center">{{$apps->id}}</td>
+        <td class="center">{{$apps->nombre}}</td>
+        <td class="center">{{$apps->tipo}}</td>
         <!--<td class="center">
             <span class="label-success label label-default">Active</span>
         </td>
@@ -82,9 +86,9 @@
             -->
             <button class="btn btn-info" href="#" >
                 <i class="glyphicon glyphicon-edit icon-white"></i>
-                {{HTML::link('#Edit','Editar',array('class'=>'edit','id'=>$aplicacion->id,'data-toggle'=>'modal','title'=>$aplicacion->nombre))}}
+                {{HTML::link('#Edit','Editar',array('class'=>'edit','id'=>$apps->id,'data-toggle'=>'modal','title'=>$apps->nombre))}}
             </button>
-            <a class="btn btn-danger" href="<?=URL::to('eliminarApp'); ?>/{{$aplicacion->id}}">
+            <a class="btn btn-danger" href="<?=URL::to('eliminarApp'); ?>/{{$apps->id}}">
                 <i class="glyphicon glyphicon-trash icon-white"></i>
                 Eliminar
             </a>
@@ -134,10 +138,10 @@
 
                 <div class="form-group">
                     <label class="col-sm-4 control-label" for="formGroup">
-                        App:
+                        Tipo:
                     </label>
                     <div class="col-sm-3">
-                        <input class="form-control" type="text" id="formGroup" name = "tipo_edit1" placeholder="Tipo App" disabled>
+                        <input class="form-control" type="text" id="formGroup" name = "tipo_edit" placeholder="Tipo App" readonly="readonly">
                     </div>
                 </div>
 
@@ -181,7 +185,7 @@ $(document).ready(function() {
         if (json.success) {
             $('#formEdit input[name="aplicacion_id"]').val(json.id);
             $('#formEdit input[name="nombre_edit"]').val(json.nombre);
-            $('#formEdit input[name="tipo_edit1"]').val(json.tipo);
+            $('#formEdit input[name="tipo_edit"]').val(json.tipo);
 
             $('#load').hide();
             

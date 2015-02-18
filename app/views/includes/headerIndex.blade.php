@@ -110,7 +110,7 @@
             </div>
 
             <div class="btn-group pull-left theme-container tada" >
-                <a href="login_admin"class="btn btn-default dropdown-toggle" data-toggle="tooltip" data-placement="bottom" title="Ingreso para el Administrador" >
+                <a href="login_admin"class="btn btn-default dropdown-toggle" data-toggle="tooltip" data-placement="bottom" title="Administrar Test" >
                     <i class="glyphicon glyphicon-tint"></i><span class="hidden-sm hidden-xs"> 
                     Administrar</span>
                 </a>

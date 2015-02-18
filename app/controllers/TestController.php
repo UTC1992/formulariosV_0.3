@@ -10,8 +10,11 @@
 		//permite mostrar los test en una tabla dinamica
 		public function getIndex()
 		{
-			$tests = DB::table('tests')->where('users_id',Auth::user()->id)->get();
-			return View::make('tests.test')->with('tests', $tests);
+			if (Auth::check()) 
+			{
+				$tests = DB::table('tests')->where('users_id',Auth::user()->id)->get();
+				return View::make('tests.test')->with('tests', $tests);
+			}
 		}
 
 		//metodo para registrar un usuario
@@ -55,21 +58,33 @@
 		public function postUpdate()
 		{
 			//opteniendo el id del partisipante
-			$aplicacion_id = Input::get('aplicacion');
+			$test_id = Input::get('test');
 			//se busca los datos del participante dependiendo del id
-			$aplicacion = Aplicacion::find($aplicacion_id);
-			//se obtienen los datos de las cajas de texto y se los ingresa en la base de datos
-			$aplicacion->nombre = Input::get('nombre_edit');
-			$tipo = Input::get('tipo_edit2');
-			if ($tipo<>'Ninguno') 
+			$test = Test::find($test_id);
+
+
+			//asignar Datos
+			if (Input::get('estado_edit') != 'Seleccione') {
+				$test->estado = Input::get('estado_edit');
+			}
+
+			if (Input::get('aplicacion_edit') != 'Seleccione') 
 			{
-				//
-				$aplicacion->tipo = Input::get('tipo_edit2');
+				//obteniendo registro de la aplicacion
+				$app = DB::table('aplicaciones')->where('nombre',Input::get('aplicacion_edit'))->first();
+				$test->app_id = $app->id;
+			}
+			
+			if (Input::get('formulario_edit') != 'Seleccione') 
+			{
+				//obteniendo registro del formulario
+	       		$form = DB::table('formularios')->where('nombre',Input::get('formulario_edit'))->first();
+				$test->form_id = $form->id;
 			}
 			
 			//se guardan los cambios 
-			$aplicacion->save();
-			return Redirect::to('aplicaciones')->with('status','ok_update');
+			$test->save();
+			return Redirect::to('tests')->with('status','ok_update');
 		}
 	}
 	

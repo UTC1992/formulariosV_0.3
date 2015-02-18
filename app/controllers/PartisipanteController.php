@@ -17,15 +17,17 @@
 			//$partisipantes = DB::table('partisipantes')->get();
 			if(Auth::check())
 			{
+				/*
 				$partisipantes = DB::table('partisipantes')
-					->join('tests', 'partisipantes.tests_id','=','tests.id')
+					->join('tests','partisipantes.tests_id','=','tests.id')
 					->join('users',function($join)
 							{
 								$join->on('users.id','=','tests.users_id')
 										->where('users.id','=',Auth::user()->id);
 							})
-					->get();	
-				return View::make('usuarios.partisipantes')->with('partisipantes', $partisipantes);
+					->get();
+					*/	
+				return View::make('usuarios.partisipantes');
 			}
 			
 			
@@ -99,11 +101,11 @@
 			$partisipante->cedula = Input::get('cedula_edit');
 			$partisipante->nombres = Input::get('nombres_edit');
 			$partisipante->apellidos = Input::get('apellidos_edit');
-			$nivelAcademico = Input::get('nivel_academico_edit2');
-			if ($nivelAcademico<>'Ninguno') 
+			$nivelAcademico = Input::get('nivel_academico_edit1');
+			if ($nivelAcademico <> 'Seleccione') 
 			{
 				//
-				$partisipante->nivel_academico = Input::get('nivel_academico_edit2');
+				$partisipante->nivel_academico = Input::get('nivel_academico_edit1');
 			}
 			$partisipante->profesion = Input::get('profesion_edit');
 			//se guardan los cambios 

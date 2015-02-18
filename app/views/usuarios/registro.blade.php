@@ -62,13 +62,14 @@
                 ?>
                 <div class="form-group">
                     <label class="col-sm-4 control-label" for="formGroup">
-                        Test:
+                        Probara la aplicación:
                     </label>
                     <div class="col-sm-3">
                         <select class="form-control" name = "aplicacion">
+                            <option>Ninguna</option>
                             @if($tests)
                             @foreach($tests as $test)
-                                <option>Ninguna</option>
+                                
                                 <?php $apps = DB::table('aplicaciones')->where('id',$test->app_id)->first(); ?>
                                 <option>{{$apps->nombre}}</option>
                             @endforeach 

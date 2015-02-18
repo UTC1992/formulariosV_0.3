@@ -15,15 +15,22 @@
 		{
 			//$my_id = Auth::user()->id;
 			//$aplicaciones = DB::table('aplicaciones')->get();
-			$aplicaciones = DB::table('aplicaciones')
-					/*->join('tests','aplicaciones.id','=','tests.app_id')
+
+			if (Auth::check()) 
+			{
+				/*
+				$aplicaciones = DB::table('aplicaciones')
+					->join('tests','aplicaciones.id','=','tests.app_id')
 					->join('users',function($join)
 							{
 								$join->on('users.id','=','tests.users_id')
 										->where('users.id','=',Auth::user()->id);
 							})
-					*/->get();
-			return View::make('aplicacion.aplicaciones')->with('aplicaciones', $aplicaciones);
+					->get();
+					*/
+				return View::make('aplicacion.aplicaciones');
+			}
+			
 		}
 
 		
@@ -82,12 +89,6 @@
 			$aplicacion = Aplicacion::find($aplicacion_id);
 			//se obtienen los datos de las cajas de texto y se los ingresa en la base de datos
 			$aplicacion->nombre = Input::get('nombre_edit');
-			$tipo = Input::get('tipo_edit2');
-			if ($tipo<>'Ninguno') 
-			{
-				//
-				$aplicacion->tipo = Input::get('tipo_edit2');
-			}
 			
 			//se guardan los cambios 
 			$aplicacion->save();

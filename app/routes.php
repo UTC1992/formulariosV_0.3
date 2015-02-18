@@ -95,6 +95,10 @@ Route::get('registroTest',function(){return View::make('tests.registro');});
 Route::post('crearTest','TestController@postCreate');
 //eliminar test
 Route::get('eliminarTest/{id}','TestController@getDelete');
+//obtener datos de la base de datos
+Route::controller('test/gettest','gettestController');
+//actualizar datos de APP
+Route::post('actualizarTest','TestController@postUpdate');
 
 //==========================FORMULARIOS=====================================
 //mostrar formularios

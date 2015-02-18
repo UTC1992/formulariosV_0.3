@@ -7,7 +7,7 @@
                 <a class="btn btn-primary btn-ln" href="index_admin">Inicio</a>
             </li>
             <li>
-                <a class="btn btn-primary btn-ln" href="table_admin">Participantes</a>
+                <a class="btn btn-primary btn-ln" href="partisipantes">Participantes</a>
             </li>
             <li><a class="btn btn-primary btn-ln" href="registroUsuarios">
                             <i class="glyphicon glyphicon-plus"></i><span>Registrar</span></a>
@@ -52,15 +52,16 @@
     <div class="box-content">
     
     <!-- $partisipantes es una variable enviada desde del controlador con with-->
-    @if($partisipantes)
+    <?php $tests = DB::table('tests')->where('users_id',Auth::user()->id)->get(); 
+                ?>
+    @if($tests)
     <table class="table table-striped table-bordered bootstrap-datatable datatable responsive">
     <thead>
     <tr>
         <th>ID</th>
         <th>Test App</th>
         <th>Cédula</th>
-        <th>Nombres</th>
-        <th>Apellidos</th>
+        <th>Usuario</th>
         <th>Nivel Académico</th>
         <th>Profesión</th>
         <th>Creación</th>
@@ -72,15 +73,16 @@
     <tr>
         
         <!--asignamos a un bucle de array $partisipantes a partisipant-->
-        @foreach($partisipantes as $partisipante)
-        <td class="center">{{$partisipante->id}}</td>
-        <td class="center">{{$partisipante->tests_id}}</td>
-        <td class="center">{{$partisipante->cedula}}</td>
-        <td class="center">{{$partisipante->nombres}}</td>
-        <td class="center">{{$partisipante->apellidos}}</td>
-        <td class="center">{{$partisipante->nivel_academico}}</td>
-        <td class="center">{{$partisipante->profesion}}</td>
-        <td class="center">{{$partisipante->created_at}}</td>
+        @foreach($tests as $test)
+        <?php $partisipanteDatos = DB::table('partisipantes')->where('tests_id',$test->id)->get(); ?>
+        @foreach($partisipanteDatos as $partisipanteDato)
+        <td class="center">{{$partisipanteDato->id}}</td>
+        <td class="center">N° 00{{$partisipanteDato->tests_id}}</td>
+        <td class="center">{{$partisipanteDato->cedula}}</td>
+        <td class="center">{{$partisipanteDato->nombres}}{{' '}}{{$partisipanteDato->apellidos}}</td>
+        <td class="center">{{$partisipanteDato->nivel_academico}}</td>
+        <td class="center">{{$partisipanteDato->profesion}}</td>
+        <td class="center">{{$partisipanteDato->created_at}}</td>
         <!--<td class="center">
             <span class="label-success label label-default">Active</span>
         </td>
@@ -99,14 +101,15 @@
             -->
             <button class="btn btn-info" href="#" >
                 <i class="glyphicon glyphicon-edit icon-white"></i>
-                {{HTML::link('#Edit','Editar',array('class'=>'edit','id'=>$partisipante->id,'data-toggle'=>'modal','title'=>$partisipante->nombres))}}
+                {{HTML::link('#Edit','Editar',array('class'=>'edit','id'=>$partisipanteDato->id,'data-toggle'=>'modal','title'=>$partisipanteDato->nombres))}}
             </button>
-            <a class="btn btn-danger" href="<?=URL::to('eliminarPartisipante'); ?>/{{$partisipante->id}}">
+            <a class="btn btn-danger" href="<?=URL::to('eliminarPartisipante'); ?>/{{$partisipanteDato->id}}">
                 <i class="glyphicon glyphicon-trash icon-white"></i>
                 Eliminar
             </a>
         </td>
     </tr>
+    @endforeach
     @endforeach
     @else
     <div class="alert alert-danger fade in">
@@ -173,9 +176,8 @@
                         Nivel Académico:
                     </label>
                     <div class="col-sm-3">
-                        <input class="form-control" type="text" id="formGroup" name = "nivel_academico_edit1" placeholder="Nivel Academico" disabled>
-                        <select class="form-control" name = "nivel_academico_edit2">
-                            <option>Ninguno</option>
+                        <select class="form-control" name = "nivel_academico_edit1">
+                            <option>Seleccione</option>
                             <option>Primero</option>
                             <option>Segundo</option>
                             <option>Tercer</option>
@@ -234,7 +236,7 @@ $(document).ready(function() {
             $('#formEdit input[name="cedula_edit"]').val(json.cedula);
             $('#formEdit input[name="nombres_edit"]').val(json.nombres);
             $('#formEdit input[name="apellidos_edit"]').val(json.apellidos);
-            $('#formEdit input[name="nivel_academico_edit1"]').val(json.nivel_academico);
+            $('#formEdit select[name="nivel_academico_edit1"]').val(json.nivel_academico);
             $('#formEdit input[name="profesion_edit"]').val(json.profesion);
 
             $('#load').hide();
