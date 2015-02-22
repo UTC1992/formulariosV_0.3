@@ -29,9 +29,15 @@ class CreateTablesBDD extends Migration {
 		Schema::create('aplicaciones', function(Blueprint $table)
 		{
 			$table->increments('id')->unique();
-			$table->string('nombre',200)->unique();
+			$table->string('nombre',200);
 			$table->string('tipo',60);
-		
+			$table->integer('users_id')
+					->foreign('users_id')
+					->references('id')
+					->on('users')
+					->onDelete('cascade')
+					->onUpdate('cascade')
+					->unsigned();
 			$table->timestamps();
 		});	
 		

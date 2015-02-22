@@ -34,6 +34,8 @@ ul li a:hover {
 
 
 <script>$(function(){$( "#tabs" ).tabs();});</script>
+
+<script type="text/javascript" src="js/js_testUsabilidad/ajax_test.js"></script>
 <div class="container well" id="formulario_sha">
     <div class="row">
         <div id="tabs" class="well" >
@@ -42,7 +44,7 @@ ul li a:hover {
               ?>
               @if($ambitos)
                 @foreach($ambitos as $ambito)
-                  <li><a href="#tabs-{{$ambito->id}}">{{$ambito->nombre}}</a></li>
+                  <li><a id="ambito_id{{$ambito->id}}" href="#tabs-{{$ambito->id}}" onclick="registrar{{$ambito->id}}();">{{$ambito->nombre}}</a></li>
                 @endforeach
                   <li><a href="#tabs-10" onclick="contarRespuestas();"> Respuestas  </a></li>
               </ul>
@@ -52,7 +54,7 @@ ul li a:hover {
               @if($ambitos)
               @foreach($ambitos as $ambito)
               <div id="tabs-{{$ambito->id}}" class="derecha">
-                <form class="form-horizontal" action="guardarResp" method="post" id="formulario">
+                <form class="form-horizontal" name="form-{{$ambito->id}}" action="guardarResp" method="post" id="formulario">
                     <div class="col-xs-10">
                       <center><h3>{{$ambito->nombre}}</h3></center>
                     </div>
@@ -64,7 +66,10 @@ ul li a:hover {
                             <label class="col-sm-8" for="formGroup">
                               {{$tarea->enunciado}}
                             </label>
-                            <div class="col-sm-4" id="tarea-{{$tarea->id}}">
+                            <!---->
+                            <input type="hidden" name="tarea_id{{$tarea->id}}" id="tarea_id{{$tarea->id}}" class="input-block-level" value="{{$tarea->id}}" >
+                            
+                            <div class="col-sm-4" id="tarea-{{$tarea->id}}" name="tarea">
                               <label class="radio-inline" >
                                 <input type="radio" name="tarea{{$tarea->id}}" value="Si">
                                 Si
@@ -127,7 +132,9 @@ ul li a:hover {
               </div> 
               @endif
               
-              
+              <!---->
+              <input id="cedula" type="hidden" name="cedula" class="input-block-level" value="{{$cedula}}" >
+
         </div>
     </div>
 </div>

@@ -1,13 +1,13 @@
 <?php 
 	
-	class AplicacionController extends BaseController
+	class TestUController extends BaseController
 	{
 		public function __construc()
 		{
 			/***
 			se verifica si esta logeado o a iniciado session 
 			*/
-			$this->beforeFilter('auth');
+			//$this->beforeFilter('auth');
 		}
 
 		//permite mostrar los partisipantes en una tabla dinamica
@@ -15,21 +15,11 @@
 		{
 			//$my_id = Auth::user()->id;
 			//$aplicaciones = DB::table('aplicaciones')->get();
-
-			if (Auth::check()) 
+			session_start();
+			if (isset($_SESSION['cedula']))
 			{
-				/*
-				$aplicaciones = DB::table('aplicaciones')
-					->join('tests','aplicaciones.id','=','tests.app_id')
-					->join('users',function($join)
-							{
-								$join->on('users.id','=','tests.users_id')
-										->where('users.id','=',Auth::user()->id);
-							})
-					->get();
-					*/
-				$aplicaciones = DB::table('aplicaciones')->where('users_id', Auth::user()->id)->get();
-				return View::make('aplicacion.aplicaciones')->with('aplicaciones',$aplicaciones);
+				return View::make('test_usabilidad.testU')->with('cedula',$_SESSION['cedula']);
+
 			}
 			
 		}

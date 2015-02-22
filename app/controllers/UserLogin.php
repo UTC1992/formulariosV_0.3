@@ -22,9 +22,9 @@
 		}
 		public function getLogout()
 		{
-			  //Desconctamos al usuario
-       		Auth::logout();
-
+			 //Desconctamos al usuario
+       		//Auth::logout();
+			
         	//Redireccionamos al inicio de la app con un mensaje
         	return Redirect::to('/');
 		}

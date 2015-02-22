@@ -38,7 +38,7 @@
                         </select>
                     </div>
                 </div>
-                <?php  $apps = DB::table('aplicaciones')->get();?>
+                <?php  $apps = DB::table('aplicaciones')->where('users_id',Auth::user()->id)->get();?>
                 <div class="form-group">
                     <label class="col-sm-4 control-label" for="formGroup">
                         Aplicación:

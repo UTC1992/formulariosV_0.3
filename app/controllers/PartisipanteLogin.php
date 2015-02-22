@@ -4,8 +4,8 @@
 		public function Partisipante()
 		{
 
-			$cedula = Input::get('cedula');
-			$partisipante = DB::table('partisipantes')->where('cedula',$cedula)->first();
+			$datoSession = Input::get('cedula');
+			$partisipante = DB::table('partisipantes')->where('cedula',$datoSession)->first();
 
 			if($partisipante)
 			{
@@ -14,17 +14,18 @@
 				
 				if (!isset($_SESSION['cedula'])) {
 					//crear unsa session con el dato cedula
-					$_SESSION['cedula'] = $cedula;
+					$_SESSION['cedula'] = $datoSession;
 				}
 	
-				//comprobar si existe una session
+				//comprobar si la variable de session esta vacia
 				if (empty($_SESSION['cedula'])) 
 				{
-					//si no existe una session se redirecciona a index
+					//si la avriable de session esta vacia se redirecciona a index
 					return Redirect::to('/');
 				}	
-				//si existe una session se redirecciona al test
-				return Redirect::to('saludo');
+				//si la avriable de session esta iniciada se redirecciona al test
+				//return $_SESSION['cedula'];
+				return Redirect::to('saludo')->with('cedula',$datoSession);
 				
 			}
 			else
@@ -35,7 +36,7 @@
 		}
 		public function getLogout()
 		{
-			session_destroy();
+			unset($_SESSION['cedula']);
         	return Redirect::to('/');
 		}
 	}

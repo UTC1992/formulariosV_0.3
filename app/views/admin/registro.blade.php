@@ -11,6 +11,7 @@
 			margin-right: 16px;
 		}
 	</style>
+	<script type="text/javascript" src="js/validacionesTest/validacion_registroAdmin.js"></script>
 </head>
 <body>
 	<div class="container well" id="registro_sha">
@@ -31,7 +32,7 @@
 						Cédula:
 					</label>
 					<div class="col-sm-4">
-						<input class="form-control" type="text" name="cedula" id="formGroup" placeholder="Tu Cédula">
+						<input class="form-control" type="text" name="cedula" id="formGroup" placeholder="Tu Cédula" required="">
 					</div>
 				</div>
 
@@ -40,7 +41,7 @@
 						Nombres:
 					</label>
 					<div class="col-sm-6">
-						<input class="form-control" type="text" name="nombres" id="formGroup" placeholder="Tus Nombres">
+						<input class="form-control" type="text" name="nombres" id="formGroup" placeholder="Tus Nombres" required="">
 					</div>
 				</div>
 
@@ -49,17 +50,17 @@
 						Apellidos:
 					</label>
 					<div class="col-sm-6">
-						<input class="form-control" type="text" name="apellidos" id="formGroup" placeholder="Tus Apellidos">
+						<input class="form-control" type="text" name="apellidos" id="formGroup" placeholder="Tus Apellidos" required=" ">
 					</div>
 				</div>
 				
 				<div class="form-group">
-					<label class="col-sm-3 control-label" for="formGroup" id="tel">
+					<label class="col-sm-3 control-label" for="formGroup" id="tel" >
 						Teléfono:
 					</label>
 					<div class="input-group col-sm-3">
 						<span class="input-group-addon"><span class="glyphicon glyphicon-phone"></span></span>
-						<input class="form-control" type="text" name="telefono" id="formGroup" placeholder="Tu Teléfono">
+						<input class="form-control" type="text" name="telefono" id="formGroup" placeholder="Tu Teléfono" required="">
 					</div>
 				</div>
 
@@ -69,7 +70,7 @@
 					</label>
 					<div class="input-group col-sm-5">
 						<span class="input-group-addon">@</span>
-						<input class="form-control" type="email" name="email" id="formGroup" placeholder="Tu Email">
+						<input class="form-control" type="email" name="email" id="formGroup" placeholder="Tu Email" required="">
 					</div>
 				</div>
 				<!--
@@ -88,7 +89,7 @@
 						Dirección:
 					</label>
 					<div class="col-sm-6">
-						<textarea class="form-control" name="direccion" rowa="4" placeholder="Tu Dirección"></textarea>
+						<textarea class="form-control" name="direccion" rowa="4" placeholder="Tu Dirección" required=""></textarea>
 					</div>
 				</div>
 				
@@ -97,7 +98,7 @@
 						Alias:
 					</label>
 					<div class="col-sm-4">
-						<input class="form-control" type="text" name="username" id="formGroup" placeholder="Tu username">
+						<input class="form-control" type="text" name="username" id="formGroup" placeholder="Tu username" required="">
 						<span class="help-block">Este nombre será utilizado para ingresar a tu cuenta.</span>
 					</div>
 				</div>
@@ -107,7 +108,7 @@
 						Password:
 					</label>
 					<div class="col-sm-4">
-						<input class="form-control" type="password" name="password" id="formGroup" placeholder="Una Contraseña">
+						<input class="form-control" type="password" name="password" id="formGroup" placeholder="Una Contraseña" required="">
 					</div>
 				</div>
 
@@ -115,7 +116,7 @@
 					<label class="col-sm-3 control-label" for="formGroup">
 					</label>
 					<div class="col-sm-6">
-						<button class="btn btn-success btn-lg" type="submit">
+						<button class="btn btn-success btn-lg" type="submit" onclick="validarRegistro();">
 							<span class="glyphicon glyphicon-floppy-saved"></span>
 							Guardar
 						</button>

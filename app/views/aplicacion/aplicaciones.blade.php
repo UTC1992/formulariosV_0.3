@@ -45,9 +45,8 @@
     <div class="box-content">
 
     <!-- $partisipantes es una variable enviada desde del controlador con with-->
-    <?php $tests = DB::table('tests')->where('users_id',Auth::user()->id)->get(); 
-                ?>
-    @if($tests)
+    
+    @if($aplicaciones)
     <table class="table table-striped table-bordered bootstrap-datatable datatable responsive">
     <thead>
     <tr>
@@ -63,8 +62,7 @@
 
         
         <!--asignamos a un bucle de array $partisipantes a partisipant-->
-        @foreach($tests as $test)
-        <?php $apps = DB::table('aplicaciones')->where('id',$test->app_id)->first(); ?>
+        @foreach($aplicaciones as $apps)
         <td class="center">{{$apps->id}}</td>
         <td class="center">{{$apps->nombre}}</td>
         <td class="center">{{$apps->tipo}}</td>

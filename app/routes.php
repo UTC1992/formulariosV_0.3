@@ -124,13 +124,13 @@ Route::post('registrarAmbito','AmbitoController@postCreate');
 //eliminar ambito
 Route::get('eliminarAmbito/{id}','AmbitoController@getDelete');
 //optener datos de ambito
-Route::controller('ambito/getambito','getAmbitoController');
+Route::controller('ambito/getambito','getambitoController');
 //actualizar datos de la ambito
 Route::post('actualizarAmbito','AmbitoController@postUpdate');
 
 //==========================TEST DE USABILIDAD=====================================
 //mostrar test de usabilidad para vista previa
-Route::get('testUsabilidad',function(){return View::make('test_usabilidad.testU');});
+Route::controller('testUsabilidad','TestUController');
 //ingresar al test de usabilidad
 Route::get('realizar_test',function(){return View::make('test_usabilidad.testU');});
 //saludo antes del test
@@ -138,3 +138,8 @@ Route::get('saludo',function(){return View::make('test_usabilidad.saludo');});
 
 //====================LOGIN INGRESO AL TEST
 Route::post('login_ingresoTest','PartisipanteLogin@Partisipante');
+
+//==========================DETALLE TAREA=====================================
+//registrar respuestas
+Route::controller('respuestas/detalletarea','DetalleTareaController');
+

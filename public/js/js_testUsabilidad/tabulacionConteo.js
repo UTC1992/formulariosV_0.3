@@ -22,12 +22,14 @@ function contarRespuestas()
 	var respAmbito8 = document.getElementById("resAmbito-8").innerHTML;
 	var respAmbito9 = document.getElementById("resAmbito-9").innerHTML;
 	
-	var tarea1 = document.getElementById("tarea-1").textContent;
+	var tarea1 = document.getElementsByName("tarea1");
+	//alert(tareaP.[0]);
 	//alert(tarea1);
 
-	
-	    for(i=0;i<document.getElementById("tarea-1").textContent.length;i++)
-	        if(document.getElementById("tarea-1")[i].checked) 
-	        	alert(document.getElementById("tarea-1")[i].value); 
+	for(var i=0;i<tarea1.length;i++)
+	    if(tarea1[i].checked) 
+			var resp1 = tarea1[i].value;
+			alert(resp1); 
+			document.getElementById("resAmbito-1").innerHTML=resp1;
 	
 }

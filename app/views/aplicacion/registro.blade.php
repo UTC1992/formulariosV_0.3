@@ -14,7 +14,7 @@
                         Nombre:
                     </label>
                     <div class="col-sm-4">
-                        <input class="form-control" type="text" id="formGroup" name = "nombre" placeholder="Cédula" requered autofocus>
+                        <input class="form-control" type="text" id="formGroup" name = "nombre" placeholder="Nombre App" requered autofocus required="">
                     </div>
                 </div>
 
@@ -26,7 +26,9 @@
                         <input class="form-control" type="text" value="Web" id="formGroup" name="tipo" readonly="readonly">
                     </div>
                 </div>
-
+                
+                <!--se optiene el id del administrador par ingresarlo luego en la tabla test en la BD-->
+                <input id="userAdmin" type="hidden" name="userAdmin" class="input-block-level" value="{{Auth::user()->id}}" >
  <!--formulario fin-->
     
     </div>

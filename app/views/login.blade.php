@@ -23,10 +23,10 @@
 			<p>Introdusca usuario y contraseña para continuar.</p>
 			@endif
 			<div class="form-group">
-				<input type="text" class="form-control" placeholder="Username" name="username" id="username"  requered autofocus>
+				<input type="text" class="form-control" placeholder="Username" name="username" id="username"  requered autofocus required="">
 			</div>
 			<div class="form-group">
-				<input type="password" class="form-control" placeholder="Contraseña" name="password" id="password" requered>
+				<input type="password" class="form-control" placeholder="Contraseña" name="password" id="password" requered required="">
 			</div>
 			<button class="btn btn-lg btn-primary btn-block" type="submit">Iniciar Sesión</button>
 			<div class="checkbox">
